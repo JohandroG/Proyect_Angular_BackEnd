@@ -1,0 +1,66 @@
+<h1>Actualizar Codigos</h1>
+
+<h3>Codigo de Acceso Total</h3>
+
+<form (submit)='updateTotal($event)'>
+    <div>
+        <label>Codigo anterior:</label>
+        <input type="text" name="oldcode" [(ngModel)]="totalcode.oldcode"/>
+    </div>
+    <div>
+        <label>Codigo nuevo:</label>
+        <input type="text" name="newcode" [(ngModel)]="totalcode.newcode"/>
+    </div>
+    <button>Actualizar</button>
+</form>
+<div class="msj">
+    {{totalmsj.empty}}
+    {{totalmsj.codelen}}
+    {{totalmsj.success}}
+    {{totalmsj.codeUsed}}
+    {{totalmsj.wrongoldcode}}
+</div>
+
+<h3>Codigo de Acceso Normal</h3>
+
+<form (submit)='updateNormal($event)'>
+    <div>
+        <label>Codigo anterior:</label>
+        <input type="text" name="oldcode2" [(ngModel)]="normalcode.oldcode">
+    </div>
+    <div>
+        <label>Codigo nuevo:</label>
+        <input type="text" name="newcode2" [(ngModel)]="normalcode.newcode">
+    </div>
+    <button>Actualizar</button>
+</form>
+<div class="msj">
+    {{normalmsj.empty}}
+    {{normalmsj.codelen}}
+    {{normalmsj.success}}
+    {{normalmsj.codeUsed}}
+    {{normalmsj.wrongoldcode}}
+</div>
+
+<h3>Codigo de Registros</h3>
+
+
+
+<form (submit)='updateRegister($event)'>
+    <div>
+        <label>Codigo anterior:</label>
+        <input type="text" name="oldcode2" [(ngModel)]="registercode.oldcode">
+    </div>
+    <div>
+        <label>Codigo nuevo:</label>
+        <input type="text" name="newcode2" [(ngModel)]="registercode.newcode">
+    </div>
+    <button>Actualizar</button>
+</form>
+<div class="msj">
+    {{registermsj.empty}}
+    {{registermsj.codelen}}
+    {{registermsj.success}}
+    {{registermsj.codeUsed}}
+    {{registermsj.wrongoldcode}}
+</div>

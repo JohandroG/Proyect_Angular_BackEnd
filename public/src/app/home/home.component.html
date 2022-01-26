@@ -1,0 +1,158 @@
+<div class="ifno" *ngIf="notices.length == 0">
+    <h1>🗞️🛑No se han publicado anuncios todavia</h1>
+</div>
+
+
+
+<div class="ifyes" *ngIf="notices.length > 0">
+
+    <div class="welcome">
+        <h1>Anuncios Disponibles</h1>
+    </div>
+
+    <div class="singnedas" *ngIf="firstname">
+        <h3>Bienvenido: {{firstname}} {{lastname}}</h3>
+    </div>
+
+    <div class="search">
+        <app-search-notice *ngIf="page_number == 1" (search)="handleSearch($event)"></app-search-notice>
+    </div>
+    
+    <div class="paginator">
+        <mat-paginator class="mp1" [length]="notices.length"
+                        [pageSize]="page_size"
+                        [pageSizeOptions]="pageSizeOptions"
+                        (page)="handlePage($event)"
+                        aria-label="Select page"
+                        hidePageSize="true"
+                        showFirstLastButtons>
+        </mat-paginator>
+    </div>
+    
+    
+    <div class="notice-holder">
+        <div class="notice" *ngFor="let notice of notices | searchN: filter_value | pagination: page_size:page_number" >          
+                <div class="notice-image">
+                    <div class="important">
+                        <p *ngIf="notice.importance">!</p>
+                    </div>
+                    <img class="image" *ngIf="notice.picture" [src]="notice.picture" alt="Imagen"/>
+                    <img class="image" *ngIf="!notice.picture" src="https://blog.mailrelay.com/wp-content/uploads/2018/03/anuncios-publicitarios.png" alt="Imagen"/>
+                </div>
+                <div class="notice-text">
+                    <span class="date">Publicado el {{notice.created_at | dateformat}}</span>
+                    <h2>{{notice.title}}</h2>
+                    <p>{{notice.description}}</p>
+                </div>
+                
+                <!-- No Important -->
+                <div class="notice-stats" *ngIf="!notice.importance">
+    
+                    <a class="stat read" href="info/anuncio/{{notice._id}}">
+                        <div class="value">
+                            <a href="info/anuncio/{{notice._id}}">
+                                <fa-icon [icon]="['fas','book-open']"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="type">
+                            <a href="info/anuncio/{{notice._id}}">
+                                Mas info.
+                            </a>
+                        </div>
+                    </a>
+                    
+                    <a class="stat" *ngIf="notice.link" href="{{notice.link}}">
+                        <div class="value">
+                            <a href="{{notice.link}}">
+                                <fa-icon [icon]="['fas','link']"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="type">
+                            <a href="{{notice.link}}">
+                                Enlace
+                            </a>
+                        </div>
+                    </a>
+    
+                    <a class="stat"  href="editar/anuncio/{{notice._id}}" *ngIf="notice.creator === username || admintype == 'Total' ">
+                        <div class="value">
+                            <a href="editar/anuncio/{{notice._id}}">
+                                <fa-icon [icon]="['fas','edit']"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="type">
+                            <a href="editar/anuncio/{{notice._id}}">
+                                Editar
+                            </a>
+                        </div>
+                    </a>
+    
+                    
+                </div>
+
+                <!-- Important -->
+                <div class="notice-stats importantstats" *ngIf="notice.importance">
+    
+                    <a class="stat read" href="info/anuncio/{{notice._id}}">
+                        <div class="value">
+                            <a href="info/anuncio/{{notice._id}}">
+                                <fa-icon [icon]="['fas','book-open']"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="type">
+                            <a href="info/anuncio/{{notice._id}}">
+                                Mas info.
+                            </a>
+                        </div>
+                    </a>
+                    
+                    <a class="stat" *ngIf="notice.link" href="{{notice.link}}">
+                        <div class="value">
+                            <a href="{{notice.link}}">
+                                <fa-icon [icon]="['fas','link']"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="type">
+                            <a href="{{notice.link}}">
+                                Enlace
+                            </a>
+                        </div>
+                    </a>
+    
+                    <a class="stat"  href="editar/anuncio/{{notice._id}}" *ngIf="notice.creator === username || admintype == 'Total' ">
+                        <div class="value">
+                            <a href="editar/anuncio/{{notice._id}}">
+                                <fa-icon [icon]="['fas','edit']"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="type">
+                            <a href="editar/anuncio/{{notice._id}}">
+                                Editar
+                            </a>
+                        </div>
+                    </a>
+    
+                    
+                </div>
+
+
+        </div>
+    </div>
+
+
+<div class="paginator">
+    <mat-paginator class="mp2" [length]="notices.length"
+                    [pageSize]="page_size"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="handlePage($event)"
+                    aria-label="Select page"
+                    showFirstLastButtons>
+    </mat-paginator>
+</div>
+
+
+</div>
+
+
+
+

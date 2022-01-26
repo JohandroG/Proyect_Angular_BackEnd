@@ -1,0 +1,79 @@
+<h2>Registarse</h2>
+
+<div class="error">
+    {{errors.problem}}
+    {{errors.emptyerror}}
+</div>
+
+<form (submit)="register($event)">
+    <div class="firstname">
+        <label for="firstname">Nombre:</label>
+        <input type="text" name="firstname" id="firstname" [(ngModel)]="newUser.firstname">
+    </div>
+    <div class="error">
+        <p>{{errors.firstnamelen}}</p>
+    </div>
+
+    <div class="lastname">
+        <label for="lastname">Apellido:</label>
+        <input type="text" name="lastname" id="lastname" [(ngModel)]="newUser.lastname">
+    </div>
+    <div class="error">
+        <p>{{errors.lastnamelen}}</p>
+    </div>
+
+    <div class="Email">
+        <label for="username">Correo:</label>
+        <input type="text" name="email" id="email" [(ngModel)]="newUser.email">
+    </div>
+    <div class="error">
+        <p>{{errors.usernamelen}}</p>
+        <p>{{errors.emailUsed}}</p>
+    </div>
+
+    <div class="username">
+        <label for="username">Usuario:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="newUser.username">
+    </div>
+    <div class="error">
+        <p>{{errors.usernamelen}}</p>
+        <p>{{errors.usernameUsed}}</p>
+    </div>
+
+    <div class="password">
+        <label for="password">Contraseña:</label>
+        <input type="text" name="password" id="password" [(ngModel)]="newUser.password">
+    </div>
+    <div class="error">
+        <p>{{errors.passlen}}</p>
+    </div>
+
+    <div class="confpass">
+        <label for="confpass">Confirmar Contraseña:</label>
+        <input type="text" name="confpass" id="confpass" [(ngModel)]="newUser.confpass">
+    </div>
+    <div class="error">
+        <p>{{errors.passnotmatch}}</p>
+    </div>
+
+    <div class="admincode">
+        <label for="admincode">Codigo de Administrador:</label>
+        <input type="text" name="admincode" id="admincode" [(ngModel)]="newUser.admincode">
+    </div>
+    <div class="error">
+        <p>{{errors.coderror}}</p>
+    </div>
+
+
+    <div class="but">
+        <button type="submit">Registrarme</button>
+    </div>
+</form>
+
+<div class="prueba">
+    {{newUser.firstname}}
+</div>
+
+
+
+

@@ -1,0 +1,13 @@
+<h1>¿Olvidaste tu contraseña?</h1>
+
+<form (submit)="request_recover_pass($event)">
+    <div class="mail">
+        <label>Introduce tu Email:</label>
+        <input type="text" name="email" id="email" [(ngModel)]="requestinfo.email"/>
+    </div>
+    <div class="msj">
+        {{msj.emailsend}}
+        {{msj.usernoexits}}
+    </div>
+    <button type="submit">Recuperar mi contraseña</button>
+</form>

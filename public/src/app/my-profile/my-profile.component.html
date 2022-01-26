@@ -1,0 +1,73 @@
+<h1>{{firstname}} {{lastname}}</h1>
+
+<h2>{{username}}</h2>
+<h2>{{email}}</h2>
+<h2>{{admintype}}</h2>
+
+<details>
+    <summary>Editar Perfil</summary>
+
+
+    <form>
+
+        <details>
+            <summary>Nombre</summary>
+
+            <div class="firstname">
+                <label>Nombre</label>
+                <input type="text" name="firstname" id="firstname" [(ngModel)]="infoToUpdate.firstname">
+            </div>
+
+        </details>
+
+        <details>
+            <summary>Apellido</summary>
+
+            <div class="lastname">
+                <label>Apellido</label>
+                <input type="text" name="lastname" id="lastname" [(ngModel)]="infoToUpdate.lastname">
+            </div>
+
+        </details>
+
+        <details>
+            <summary>Usuario</summary>
+
+            <div class="username">
+                <label>Usuario</label>
+                <input type="text" name="username" id="username" [(ngModel)]="infoToUpdate.username">
+            </div>
+
+        </details>
+
+        <details>
+            <summary>Email</summary>
+
+            <div class="email">
+                <label>Email</label>
+                <input type="text" name="email" id="email" [(ngModel)]="infoToUpdate.email">
+            </div>
+
+        </details>
+
+        <details>
+            <summary>Contraseña</summary>
+
+            <div class="password">
+                <label>Contraseña Anterior</label>
+                <input type="text" name="password" id="password" [(ngModel)]="infoToUpdate.oldpassword">
+            </div>
+
+            <div class="password">
+                <label>Contraseña Nueva</label>
+                <input type="text" name="password" id="password" [(ngModel)]="infoToUpdate.newpassword">
+            </div>
+
+        </details>
+
+        <div class="button">
+            <button type="submit">Actualizar Informacion</button>
+        </div>
+
+    </form>
+</details>

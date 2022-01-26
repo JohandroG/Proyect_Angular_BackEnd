@@ -1,0 +1,23 @@
+{
+  "name": "proyect_angular",
+  "version": "1.0.0",
+  "description": "Este es un proyecto para un tablero de anuncios",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Johandro Gonzalez A",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^6.1.1",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.7.2"
+  }
+}

@@ -1,0 +1,31 @@
+<h1>Cambia tu contraseña</h1>
+
+<form (submit)="request_recover_pass($event)">
+    <div class="msj">
+        {{msj.empty}}
+        {{msj.msjerror}}
+        {{msj.success}}
+    </div>
+
+    <div class="code">
+        <label>Codigo:</label>
+        <input type="text" name="code" id="code" [(ngModel)]="requestinfo.token"/>
+    </div>
+    <div class="msj">
+        {{msj.wrongtoken}}
+    </div>
+
+    <div class="pass">
+        <label>Nueva Contraseña:</label>
+        <input type="text" name="pass" id="pass" [(ngModel)]="requestinfo.password"/>
+    </div>
+
+    <div class="confpass">
+        <label>Codigo:</label>
+        <input type="text" name="confpass" id="confpass" [(ngModel)]="requestinfo.passwordconf"/>
+    </div>
+    <div class="msj">
+        {{msj.passnotmatch}}
+    </div>
+    <button type="submit">Cambiar Contraseña</button>
+</form>

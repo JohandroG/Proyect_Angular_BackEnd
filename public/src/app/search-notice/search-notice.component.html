@@ -1,0 +1,11 @@
+
+<mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Buscar Anuncio</mat-label>
+    <input matInput [formControl]="search" type="text" [(ngModel)]="value">
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Borrar" (click)="value=''">
+    <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+
+
+

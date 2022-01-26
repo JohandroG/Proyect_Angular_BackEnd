@@ -1,0 +1,56 @@
+<h1>Publicar un anuncio Nuevo</h1>
+
+<form (submit)="createnotice($event)">
+
+    <div class="title">
+        <label>Titulo:</label>
+        <input type="text" name="title" [(ngModel)]="newNotice.title"/>
+    </div>
+    <p>{{newNotice.title}}</p>
+    <div class="error">
+        {{msj.titlelen}}
+        {{newNotice.title}}
+    </div>
+
+    <div class="description">
+        <label>Descripcion:</label>
+        <textarea name="description" [(ngModel)]="newNotice.description"></textarea>
+    </div>
+    <div class="error">
+        {{msj.desclen}}
+    </div>
+
+    <div class="link">
+        <label>Enlace:</label>
+        <input type="text" name="link" [(ngModel)]="newNotice.link"/>
+    </div>
+    <div class="error">
+
+    </div>
+
+    <div class="importance">
+        <label>Importancia:</label>
+        <input type="checkbox" name="importance" [(ngModel)]="newNotice.importance"/>
+    </div>
+    <div class="error">
+
+    </div>
+    <div class="picture">
+        <label>Imagen:</label>
+        <input type="file" name="picture" (change)='selectedIMG($event)'/>
+    </div>
+    <div class="error">
+
+    </div>
+
+    <div class="but">
+        <button type="submit">
+            Publicar
+        </button>
+    </div>
+
+    <div class="image">
+        <img [src]="imgprev" height="100px">
+    </div>
+
+</form>

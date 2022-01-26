@@ -1,0 +1,31 @@
+<h2>Ingresar</h2>
+<div class="error">
+    <p>{{errors.emptyerror}}</p>
+</div>
+
+<form (submit)='login($event)'>
+    <div class="user space">
+        <label>Usuario</label>
+        <input type="text" name="username" id="username" [(ngModel)]="currentUser.username"/>
+    </div>
+    <div class="error">
+        <p>{{errors.adminerror}}</p>
+    </div>
+    
+    <div class="pass space">
+        <label>Password</label>
+        <input type="text" name="password" id="password" [(ngModel)]="currentUser.password"/>
+    </div>
+    <div class="error">
+        <p>{{errors.passworderror}}</p>
+    </div>
+    <div class="forgot">
+        <a href="olvide/contra">Olvide mi contraseña</a>
+    </div>
+
+    <div class="space">
+        <button type="submit">
+            Ingresar
+        </button>
+    </div>
+</form>

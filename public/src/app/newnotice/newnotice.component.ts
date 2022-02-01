@@ -8,6 +8,9 @@ import {NoticesService} from '../services/notices.service';
   templateUrl: './newnotice.component.html',
   styleUrls: ['./newnotice.component.css']
 })
+
+
+
 export class NewnoticeComponent implements OnInit {
 
 

@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
 
 //!--VARIABLES------------------------------------------------------------------------------------------
 
+
+
   currentUser:any = {
     username: "",
     password: ""

@@ -8,14 +8,14 @@ const NoticeSchema = new mongoose.Schema({
     title :{
         type : String,
         required : true,
-        minlength : 3,
+        minlength : 5,
         maxlength : 100
     },
 
     description : {
         type : String,
         required : true,
-        minlength : 5
+        minlength : 8
     },
 
     link : {

@@ -62,6 +62,10 @@ if(title.length < 5 ){
     errormsj.titlelen = "🔏 El titulo debe ser de al menos 5 caracteres"
     isValid = false;
 }
+if(title.length > 100 ){
+    errormsj.titlelen2 = "🔏 El titulo debe ser de maximo 100 caracteres"
+    isValid = false;
+}
 if(description.length < 8 ){
     errormsj.desclen = "🔏 La descripcion debe ser de al menos 8 caracteres"
     isValid = false;
@@ -172,6 +176,10 @@ updatenotice: [
             if(title){
                 if(title.length < 5 ){
                     errormsj.titlelen = "🔏 El titulo debe ser de al menos 5 caracteres"
+                    isValid = false;
+                }
+                if(title.length > 100 ){
+                    errormsj.titlelen2 = "🔏 El titulo debe ser de maximo 100 caracteres"
                     isValid = false;
                 }
                 noticeupdated.title = title;

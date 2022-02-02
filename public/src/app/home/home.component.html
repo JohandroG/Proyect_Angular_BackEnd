@@ -7,11 +7,12 @@
 <div class="ifyes" *ngIf="notices.length > 0">
 
     <div class="welcome">
-        <h1>Anuncios Disponibles</h1>
-    </div>
-
-    <div class="singnedas" *ngIf="firstname">
-        <h3>Bienvenido: {{firstname}} {{lastname}}</h3>
+        <div>
+            <h1>Tablero de Anuncios</h1>
+            <div class="singnedas" *ngIf="firstname">
+                <h3 id="log">Bienvenido: {{firstname}} {{lastname}}</h3>
+            </div>
+        </div>
     </div>
 
     <div class="search">
@@ -41,8 +42,12 @@
                 </div>
                 <div class="notice-text">
                     <span class="date">Publicado el {{notice.created_at | dateformat}}</span>
-                    <h2>{{notice.title}}</h2>
-                    <p>{{notice.description}}</p>
+                    <div class="titlecont">
+                        <h2>{{notice.title}}</h2>
+                    </div>
+                    <div class="descriptioncont">
+                        <p>{{notice.description}}</p>
+                    </div>
                 </div>
                 
                 <!-- No Important -->

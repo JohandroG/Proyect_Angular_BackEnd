@@ -1,10 +1,20 @@
 .example-form-field {
-    width: 80%;
+    width: 100vw;
 }
 
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+    .example-form-field {
+        width: 50vw;
+    }
+}
 
 @media only screen and (min-width: 1024px) {
     .example-form-field {
-        width: 30%;
+        width: 30vw;
     }
+
 }
+
+/* @media only screen and (min-width: 1024px) {
+
+} */

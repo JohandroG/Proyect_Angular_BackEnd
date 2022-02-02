@@ -41,8 +41,9 @@
             labelPosition = "before" color="warn">Importante</mat-checkbox>
         </div>
         <div class="error">
-    
+            
         </div>
+        
         <div class="picture">
             <label>Imagen:</label>
             <input type="file" name="picture" (change)='selectedIMG($event)' accept="image/png, image/gif, image/jpeg"/>
@@ -52,9 +53,7 @@
         </div>
     
         <div class="but">
-            <button type="submit">
-                Publicar
-            </button>
+            <button mat-raised-button color="primary">Publicar</button>
         </div>
     
     </form>

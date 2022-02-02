@@ -20,20 +20,29 @@ body::-webkit-scrollbar{
     width: 0.25rem;
 }
 
-.info{
-    padding: 2rem;
-    padding-top: 1rem;
-    padding-left: 7rem;
-}
-
-
-@media only screen and (max-width: 600px) {
 
 .info{
-    padding: 1rem;
+    padding: 0rem;
     padding-bottom: 6rem;
 }
 
+
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+    .info{
+        padding: 0rem;
+        padding-left: 5rem;
+    }
+}
+
+@media only screen and (min-width: 1024px){ 
+
+    .info{
+        padding: 0rem;
+        padding-left: 5rem;
+    }
+    
 }
 
 

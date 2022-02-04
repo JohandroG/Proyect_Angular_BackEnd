@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {NoticesService} from '../services/notices.service';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 
 @Component({
@@ -8,6 +17,7 @@ import {NoticesService} from '../services/notices.service';
   templateUrl: './newnotice.component.html',
   styleUrls: ['./newnotice.component.css']
 })
+
 
 
 
@@ -26,6 +36,7 @@ newNotice:any = {
 
 
 imgprev:any = ""
+imgnameprev:any = ""
 
 noticeImage:any =  null;
 
@@ -39,10 +50,24 @@ msj:any = {};
 
 //!--VARIABLES------------------------------------------------------------------------------------------
 
+  titleFormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+
+  descriptionFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
+
+  matcher = new MyErrorStateMatcher();
+
+  
+
+
+//?--INPUTVALIDATOR--------------------------------------------------------------------------------------
+@ViewChild('cardpreview') preview: ElementRef<any> | undefined;
+
+
 
   constructor(private _HttpNoticesService: NoticesService,
     private _router:Router,
     private _route:ActivatedRoute,
+    private renderer2: Renderer2
     ) { }
 
   ngOnInit(): void {
@@ -50,8 +75,7 @@ msj:any = {};
 
 
   selectedIMG(e:any){
-
-    this.imgprev = ""
+    this.imgnameprev = ""
 
     const imageCaptured = e.target.files[0]
     if(imageCaptured){
@@ -61,6 +85,7 @@ msj:any = {};
         this.imgprev = event.target.result;
       }
       this.archivos.push(imageCaptured)
+      this.imgnameprev = imageCaptured.name;
     }
   }
 
@@ -94,6 +119,10 @@ msj:any = {};
       this.msj = error.error
     }
     )
+  }
+
+  mobilepreview():void{
+    this.renderer2.addClass(this.preview?.nativeElement,'appear')
   }
 
 }

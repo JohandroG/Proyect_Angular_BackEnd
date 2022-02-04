@@ -1,6 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 import {NoticesService} from '../services/notices.service';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-editnotice',
@@ -25,15 +35,29 @@ msj:any ={}
 
 
 imgprev:any = ""
+imgnameprev:any = ""
 
 noticeImage:any =  null;
 
 archivos:any = [];
 //!--VARIABLES------------------------------------------------------------------------------------------
+titleFormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+
+descriptionFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
+
+matcher = new MyErrorStateMatcher();
+
+
+//?--INPUTVALIDATOR--------------------------------------------------------------------------------------
+@ViewChild('cardpreview') preview: ElementRef<any> | undefined;
+
+
+
 
   constructor(private _HttpNoticesService: NoticesService,
     private _router:Router,
     private _route:ActivatedRoute,
+    private renderer2: Renderer2
     ) { }
 
 
@@ -125,4 +149,10 @@ archivos:any = [];
     })
     
   }
+
+  mobilepreview():void{
+    this.renderer2.addClass(this.preview?.nativeElement,'appear')
+  }
+
+
 }

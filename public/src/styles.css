@@ -19,15 +19,16 @@ body {
 }
 
 body::-webkit-scrollbar {
-    width: 0.25rem;
+    width: 0.30rem;
+    height: 0.30rem;
 }
 
 body::-webkit-scrollbar-track {
-    background: #1e1e24;
+    background: #727374;
 }
 
 body::-webkit-scrollbar-thumb {
-    background: #6649b8;
+    background: #003367;
 }
 
 html, body { height: 100%; }

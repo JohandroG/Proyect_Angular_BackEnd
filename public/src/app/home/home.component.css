@@ -249,8 +249,9 @@ body{
         align-items: center;
         justify-content: space-evenly;
     }
+    
     .notice{
-        margin: 25px 5px;
+        margin: 25px 15px;
     }
 
     .search{

@@ -9,7 +9,7 @@ const NoticeSchema = new mongoose.Schema({
         type : String,
         required : true,
         minlength : 5,
-        maxlength : 100
+        maxlength : 200
     },
 
     description : {

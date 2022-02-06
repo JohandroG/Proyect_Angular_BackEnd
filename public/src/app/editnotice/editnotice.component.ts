@@ -35,13 +35,16 @@ msj:any ={}
 
 
 imgprev:any = ""
+
+imgprev2:any = ""
+
 imgnameprev:any = ""
 
 noticeImage:any =  null;
 
 archivos:any = [];
 //!--VARIABLES------------------------------------------------------------------------------------------
-titleFormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+titleFormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]);
 
 descriptionFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
@@ -67,7 +70,8 @@ matcher = new MyErrorStateMatcher();
 
   selectedIMG(e:any){
 
-    this.imgprev = ""
+    this.imgprev = this.imgprev2
+    this.imgnameprev = ""
 
     const imageCaptured = e.target.files[0]
     if(imageCaptured){
@@ -77,6 +81,7 @@ matcher = new MyErrorStateMatcher();
         this.imgprev = event.target.result;
       }
       this.archivos.push(imageCaptured)
+      this.imgnameprev = imageCaptured.name;
     }
   }
 
@@ -92,6 +97,7 @@ matcher = new MyErrorStateMatcher();
       this.newNotice.importance = data.importance
       // this.newNotice.creator = data.creator
       this.imgprev = data.picture
+      this.imgprev2 = data.picture
     })
   }
 

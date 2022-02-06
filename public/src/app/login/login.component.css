@@ -1,0 +1,109 @@
+mat-card{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 5vh;
+}
+
+mat-card h2{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+
+.forgot a{
+    text-decoration: none;
+    color: #3F51B5;
+    text-align: center;
+}
+
+.space button{
+    width: 60vw;
+    height: 40px;
+    font-size: 20px;
+    background-color: #003367;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 84vw;
+}
+
+.space{
+    margin-bottom: 50px;
+}
+
+.error{
+    height: 40px;
+    vertical-align: middle;
+}
+
+.error p{
+    margin: 0;
+    color: red;
+}
+
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+
+    mat-card h2{
+        font-size: 50px;
+        margin-top: 15px;
+    }
+
+    mat-card{
+        margin: 20px;
+    }
+
+    form div{
+        width: 60vw;
+    }
+
+    .space button{
+        width: 50vw;
+        height: 50px;
+        font-size: 25px;
+    }
+
+    .forgot a{
+        font-size: 18px;
+    }
+
+}
+
+@media only screen and (min-width: 1024px){ 
+
+    mat-card h2{
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    mat-card{
+        margin: 15px;
+        width: 50vw;
+    }
+
+    form div{
+        width: 40vw;
+    }
+
+    .space button{
+        width: 30vw;
+        height: 45px;
+        font-size: 25px;
+    }
+
+    .forgot a{
+        font-size: 18px;
+    }
+
+}

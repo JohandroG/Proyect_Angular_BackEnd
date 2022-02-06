@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {UsersService} from '../services/users.service';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -14,17 +23,30 @@ export class LoginComponent implements OnInit {
 
 
   currentUser:any = {
-    username: "",
+    email: "",
     password: ""
   }
   
   errors:any = {};
 //!--VARIABLES------------------------------------------------------------------------------------------
 
+emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+passFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
+
+matcher = new MyErrorStateMatcher();
+
+
+
+
+//?--INPUTVALIDATOR--------------------------------------------------------------------------------------
+@ViewChild('cardpreview') preview: ElementRef<any> | undefined;
+
 
   constructor(private _HttpService: UsersService,
     private _router:Router,
     private _route:ActivatedRoute,
+    private renderer2: Renderer2
     ) { }
 
   ngOnInit(): void {

@@ -1,1 +1,31 @@
-<p>notice-info works!</p>
+<main>
+    <mat-card>
+        <div class="image" *ngIf="notice.picture">
+            <img class="images" [src]="notice.picture" alt="Imagen de esta publicacion"/>
+        </div>
+        <div class="information">
+            <div class="info">
+                <p class="importance" *ngIf="notice.importance">
+                    <fa-icon class="importance" [icon]="['fas','exclamation-circle']" style="font-size: 35px; margin-right: 10px;"></fa-icon>
+                    Importante
+                </p>
+                <h1>{{notice.title}}</h1>
+                <p class="date">Publicado el {{notice.created_at | dateformat}} por {{notice.creator}}</p>
+                <h3>{{notice.description}}</h3>
+            </div>
+            <div class="extra">
+                <a href="{{notice.link}}" *ngIf="notice.link" >
+                    <button mat-fab color="primary">
+                            <fa-icon [icon]="['fas','link']" style="font-size: 22px;"></fa-icon>
+                    </button>
+                </a>
+            
+                <a class="stat"  href="editar/anuncio/{{notice._id}}"  *ngIf="notice.creator === username || admintype == 'Total'">
+                    <button mat-fab color="warn">
+                        <fa-icon [icon]="['fas','edit']" style="font-size: 22px;"></fa-icon>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </mat-card>
+</main>

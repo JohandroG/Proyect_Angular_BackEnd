@@ -127,11 +127,11 @@ else{
 
 login:function (req,res) {
 
-    let username = req.body.username;
+    let email = req.body.email;
     let password = req.body.password;
 
-    if(username && password){
-        AdminModel.getAdminByUsername(username)
+    if(email && password){
+        AdminModel.getAdminByEmail(email)
         .then(data=>{
 
             if(!data){

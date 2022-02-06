@@ -140,6 +140,7 @@ transition: var(--transition-speed);
 
     .navbar-nav {
     flex-direction: row;
+    width: 100vw;
     }
 
 
@@ -147,7 +148,8 @@ transition: var(--transition-speed);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 4rem;
+    align-items: center;
+    width: 5rem;
     }
 
 

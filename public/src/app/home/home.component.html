@@ -35,7 +35,9 @@
         <div class="notice" *ngFor="let notice of notices | searchN: filter_value | pagination: page_size:page_number" >          
                 <div class="notice-image">
                     <div class="important">
-                        <p *ngIf="notice.importance">!</p>
+                        <p *ngIf="notice.importance">
+                            <fa-icon [icon]="['fas','exclamation-circle']" style="font-size: 40px; color: rgb(160, 16, 16);"></fa-icon>
+                        </p>
                     </div>
                     <img class="image" *ngIf="notice.picture" [src]="notice.picture" alt="Imagen"/>
                     <img class="image" *ngIf="!notice.picture" src="https://blog.mailrelay.com/wp-content/uploads/2018/03/anuncios-publicitarios.png" alt="Imagen"/>

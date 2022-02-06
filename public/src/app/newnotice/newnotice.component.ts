@@ -50,7 +50,7 @@ msj:any = {};
 
 //!--VARIABLES------------------------------------------------------------------------------------------
 
-  titleFormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  titleFormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]);
 
   descriptionFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
@@ -75,6 +75,8 @@ msj:any = {};
 
 
   selectedIMG(e:any){
+    
+    this.imgprev = ""
     this.imgnameprev = ""
 
     const imageCaptured = e.target.files[0]

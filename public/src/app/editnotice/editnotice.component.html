@@ -9,10 +9,13 @@
         <div>
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Título</mat-label>
-                <input type="email" matInput [formControl]="titleFormControl" [errorStateMatcher]="matcher"
+                <input type="text" matInput [formControl]="titleFormControl" [errorStateMatcher]="matcher"
                     placeholder="Ej. Anuncio Publico" name="title" [(ngModel)]="newNotice.title">
                 <mat-hint>Inserta el título</mat-hint>
-                <mat-error *ngIf="!titleFormControl.hasError('minLength') && !titleFormControl.hasError('required')">
+                <mat-error *ngIf="titleFormControl.hasError('maxlength') && !titleFormControl.hasError('required')">
+                    Usa máximo 200 caracteres 
+                </mat-error>
+                <mat-error *ngIf="titleFormControl.hasError('minlength') && !titleFormControl.hasError('required')">
                 Usa mínimo 5 caracteres 
                 </mat-error>
                 <mat-error *ngIf="titleFormControl.hasError('required')">
@@ -29,7 +32,7 @@
                 <textarea matInput [formControl]="descriptionFormControl" [errorStateMatcher]="matcher"
                     placeholder="Ej. Anuncio Publico" name="description" [(ngModel)]="newNotice.description"></textarea>
                 <mat-hint>Inserta la descripción</mat-hint>
-                <mat-error *ngIf="!descriptionFormControl.hasError('minLength') && !descriptionFormControl.hasError('required')">
+                <mat-error *ngIf="descriptionFormControl.hasError('minlength') && !descriptionFormControl.hasError('required')">
                     Usa mínimo 8 caracteres 
                 </mat-error>
                 <mat-error *ngIf="descriptionFormControl.hasError('required')">
@@ -42,18 +45,18 @@
         <div>
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Enlace</mat-label>
-                <input class="linkin" matInput placeholder="Ir a..." name="link" [(ngModel)]="newNotice.link">
+                <input type="url" class="linkin" matInput placeholder="Ir a..." name="link" [(ngModel)]="newNotice.link">
                 <mat-hint>Opcional: Incluye un enlace</mat-hint>
             </mat-form-field>
         </div>
 
 
         
-            <div class="file-input">
-                <input class="file" id="file" type="file" name="picture" (change)='selectedIMG($event)' accept="image/png, image/gif, image/jpeg"/>
-                <label for="file" *ngIf="!imgnameprev">Incluye Imagen</label>
-                <label for="file" *ngIf="imgnameprev">{{imgnameprev}}</label>
-            </div>
+        <div class="file-input">
+            <input class="file" id="file" type="file" name="picture" (change)='selectedIMG($event)' accept="image/png, image/gif, image/jpeg"/>
+            <label for="file" *ngIf="!imgnameprev">Incluye Imagen</label>
+            <label for="file" *ngIf="imgnameprev">{{imgnameprev}}</label>
+        </div>
             
             
             <div>
@@ -62,10 +65,10 @@
             </div>
         
     
-        <div class="but">
-            <button mat-raised-button  color="primary">Actualizar</button>
-            <button type="button" class="prevbut" mat-raised-button  color="warn" (click)="mobilepreview()">Vista Previa</button>
-        </div>
+            <div class="but">
+                <button class="sub" mat-raised-button  color="primary">Publicar</button>
+                <button type="button" class="prevbut" mat-raised-button  color="warn" (click)="mobilepreview()">Vista Previa</button>
+            </div>
 
     </form>
 
@@ -92,7 +95,9 @@
                     <div class="notice" >          
                             <div class="notice-image">
                                 <div class="important">
-                                    <p *ngIf="newNotice.importance">!</p>
+                                    <p *ngIf="newNotice.importance">
+                                        <fa-icon [icon]="['fas','exclamation-circle']" style="font-size: 40px; color: rgb(160, 16, 16);"></fa-icon>
+                                    </p>
                                 </div>
                                 <img class="image" *ngIf="imgprev" [src]="imgprev" alt="Imagen"/>
                                 <img class="image" *ngIf="!imgprev" src="https://blog.mailrelay.com/wp-content/uploads/2018/03/anuncios-publicitarios.png" alt="Imagen"/>

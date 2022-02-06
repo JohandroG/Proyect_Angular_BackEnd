@@ -115,24 +115,16 @@
 }
 
 .important p {
-    background-color: rgb(165, 22, 22);
-    color: white;
-    font-weight: 900;
     border-radius: 100px;
-    padding: 5px 15px;
+    padding: 5px;
     z-index: 5;
-    font-size: 25px;
     position: absolute;
     top: 5px;
     left: 5px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -ms-border-radius: 100px;
-    -o-border-radius: 100px;
 }
 
 .importantstats{
-    background-color: rgb(165, 22, 22);
+    background-color: rgb(160, 16, 16);
 }
 
 .titlecont{
@@ -214,7 +206,7 @@ mat-card{
     min-height: 40px;
     padding: 5px 10px;
     border-radius: 25px;
-    background: linear-gradient(40deg, #010a14, #3877b6);
+    background: linear-gradient(50deg, #d16c0d, #082575);
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
@@ -249,11 +241,36 @@ input:focus + label {
     width: 100px;
 }
 
+.but .sub{
+    width: 35vw;
+    height: 40px;
+    font-size: 20px;
+    background-color: #003367;
+}
 
+.but .prevbut{
+    width: 35vw;
+    height: 40px;
+    font-size: 20px;
+    background-color: #eb4015;
+}
 
 
 @media only screen and (min-width: 481px) and (max-width: 1023px){ 
 
+.but .sub{
+    width: 25vw;
+    height: 45px;
+    font-size: 25px;
+    background-color: #003367;
+}
+
+.but .prevbut{
+    width: 25vw;
+    height: 45px;
+    font-size: 25px;
+    background-color: #eb4015;
+}
 
 .descriptionspace textarea {
     height: 250px;
@@ -280,6 +297,12 @@ form{
 }
 
 @media only screen and (min-width: 1024px){ 
+
+.but .sub{
+    width: 25vw;
+    height: 45px;
+    font-size: 25px;
+}
 
 .preview{
     display: block;

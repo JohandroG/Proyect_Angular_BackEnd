@@ -123,24 +123,16 @@ body{
 }
 
 .important p {
-    background-color: rgb(110, 10, 10);
-    color: white;
-    font-weight: 900;
     border-radius: 100px;
-    padding: 5px 15px;
+    padding: 5px;
     z-index: 5;
-    font-size: 25px;
     position: absolute;
     top: 5px;
     left: 5px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -ms-border-radius: 100px;
-    -o-border-radius: 100px;
 }
 
 .importantstats{
-    background-color: rgb(110, 10, 10);
+    background-color: rgb(160, 16, 16);
 }
 
 .titlecont{

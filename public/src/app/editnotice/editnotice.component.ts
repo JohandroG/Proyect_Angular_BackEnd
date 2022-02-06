@@ -66,7 +66,16 @@ matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
     this.loadNoticeInfo();
+    this.protectURL();
   }
+
+  protectURL():void{
+    const admintype = sessionStorage.getItem('userAdminType');
+    if(!admintype || admintype === "Register"){
+      this._router.navigate( ['/'] )
+    }
+  }
+
 
   selectedIMG(e:any){
 

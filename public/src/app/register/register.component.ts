@@ -63,6 +63,14 @@ matcher = new MyErrorStateMatcher();
     ) { }
 
   ngOnInit(): void {
+    this.protectURL();
+  }
+
+  protectURL():void{
+    const admintype = sessionStorage.getItem('userAdminType');
+    if(admintype){
+      this._router.navigate( ['/'] )
+    }
   }
 
   register(event:any): void{

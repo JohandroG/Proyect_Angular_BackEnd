@@ -22,7 +22,7 @@ createNewAdmin : function (req,res) {
     let isValid = true;
 
 //?--------------------------------------------------
-
+console.log(firstname,lastname,email,username,password,confpassword,admincode);
 if(firstname && lastname && username && email && password && admincode){
 
 if(firstname.length < 3){
@@ -49,22 +49,24 @@ if(password !== confpassword){
 CodeModel.findMatch(admincode)
 .then(result=>{
     
-    console.log(result.identifier);
+    console.log(result)
 
-    if(result !== null && result.identifier === "Total" || result.identifier === "Normal"){
+    if(result !== null){
         if(result.identifier === "Total"){
             admintype = "Total"
         }
-        if(result.identifier === "Normal"){
+        if(result.identifier  === "Normal"){
             admintype = "Normal"
+        }
+        if(result.identifier  === "Register"){
+            admintype = "Register"
         }
     }
     else{
-        if(result === null || result.identifier !== "Total" || result.identifier !== "Normal"){
+        if(result === null){
             errormsj.coderror = "📮 El codigo de administrador no es correcto"
             isValid = false
         }
-        
     }
 
 //* Validations-------------------------------------------------------------------------------
@@ -89,6 +91,7 @@ CodeModel.findMatch(admincode)
             })
             .catch(error =>{
 
+                console.log(error);
                 errormsj = {};
 
                 console.log(error);

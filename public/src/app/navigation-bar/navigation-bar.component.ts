@@ -14,11 +14,8 @@ export class NavigationBarComponent implements OnInit {
 
 //!--VARIABLES------------------------------------------------------------------------------------------
 
-_id:any = "";
-firstname:string = "";
-lastname:string = "";
-username:string = "";
-admintype:string = "";
+admintype:any = "";
+
 
 
 //!--VARIABLES------------------------------------------------------------------------------------------
@@ -32,8 +29,8 @@ constructor(private _router:Router,
   }
 
   verifysession():void{
-    const sessionID = sessionStorage.getItem('userID');
-    this._id = sessionID;
+    const sessionadmintype = sessionStorage.getItem('userAdminType');
+    this.admintype = sessionadmintype;
   }
 
   logout():void{

@@ -2,11 +2,6 @@
 
 <h2>Registarse</h2>
 
-<div class="error">
-    {{errors.problem}}
-    {{errors.emptyerror}}
-</div>
-
 <form (submit)="register($event)">
     <div class="firstname">
 
@@ -25,9 +20,6 @@
                 El nombre es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>
-    </div>
-    <div class="error">
-        <p>{{errors.firstnamelen}}</p>
     </div>
 
     <div class="lastname">
@@ -49,9 +41,6 @@
         </mat-form-field>
 
     </div>
-    <div class="error">
-        <p>{{errors.lastnamelen}}</p>
-    </div>
 
     <div class="Email">
         <mat-form-field class="example-full-width" appearance="fill">
@@ -66,10 +55,6 @@
                 El email es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>
-    </div>
-    <div class="error">
-        <p>{{errors.usernamelen}}</p>
-        <p>{{errors.emailUsed}}</p>
     </div>
 
     <div class="username">
@@ -87,10 +72,7 @@
             </mat-error>
         </mat-form-field>
     </div>
-    <div class="error">
-        <p>{{errors.usernamelen}}</p>
-        <p>{{errors.usernameUsed}}</p>
-    </div>
+
 
     <div class="password">
         <mat-form-field class="example-full-width" appearance="fill">
@@ -108,9 +90,6 @@
                 La contraseña es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>
-    </div>
-    <div class="error">
-        <p>{{errors.passlen}}</p>
     </div>
 
     <div class="confpass">
@@ -131,9 +110,6 @@
             </mat-error>
         </mat-form-field>
     </div>
-    <div class="error">
-        <p>{{errors.passnotmatch}}</p>
-    </div>
 
     <div class="admincode">
 
@@ -153,10 +129,19 @@
             </mat-error>
         </mat-form-field>
     </div>
+
     <div class="error">
+        <p>{{errors.problem}}</p>
+        <p>{{errors.emptyerror}}</p>
+        <p>{{errors.firstnamelen}}</p>
+        <p>{{errors.lastnamelen}}</p>
+        <p>{{errors.usernamelen}}</p>
+        <p>{{errors.emailUsed}}</p>
+        <p>{{errors.usernameUsed}}</p>
+        <p>{{errors.passlen}}</p>
+        <p>{{errors.passnotmatch}}</p>
         <p>{{errors.coderror}}</p>
     </div>
-
 
     <div class="space">
         <button mat-raised-button color="primary">Registrarse</button>

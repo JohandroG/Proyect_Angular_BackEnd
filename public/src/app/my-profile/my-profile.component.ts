@@ -41,6 +41,14 @@ admintype:any = "";
 
   ngOnInit(): void {
     this.getFromSession();
+    this.protectURL();
+  }
+
+  protectURL():void{
+    const admintype = sessionStorage.getItem('userAdminType');
+    if(!admintype){
+      this._router.navigate( ['/'] )
+    }
   }
 
   getFromSession():void{

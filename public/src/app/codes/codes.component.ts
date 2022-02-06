@@ -44,6 +44,14 @@ registermsj:any = {}
 
 
   ngOnInit(): void {
+    this.protectURL();
+  }
+
+  protectURL():void{
+    const admintype = sessionStorage.getItem('userAdminType');
+    if(!admintype || admintype === "Register"|| admintype === "Normal"){
+      this._router.navigate( ['/'] )
+    }
   }
 
   updateTotal(event:any):void{

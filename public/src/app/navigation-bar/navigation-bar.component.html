@@ -16,19 +16,19 @@
                 <span class="link-text">Anuncios</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="admintype" class="nav-item">
             <a href="#" class="nav-link">
                 <fa-icon [icon]="['fas','phone']"></fa-icon>
                 <span class="link-text">Registros (Proximamente)</span>
             </a>
         </li>
-        <li *ngIf="!_id" class="nav-item">
+        <li *ngIf="!admintype" class="nav-item">
             <a href="/ingresar" class="nav-link">
                 <fa-icon [icon]="['fas','user-check']"></fa-icon>
                 <span class="link-text">Iniciar Sesión</span>
             </a>
         </li>
-        <li *ngIf="!_id" class="nav-item">
+        <li *ngIf="!admintype" class="nav-item">
             <a href="/registarse" class="nav-link">
                 <fa-icon [icon]="['fas','user-edit']"></fa-icon>
                 <span class="link-text">Registarme</span>
@@ -37,31 +37,31 @@
 
 
         
-        <li *ngIf="_id" class="nav-item">
+        <li *ngIf="admintype === 'Normal' || admintype == 'Total'" class="nav-item">
             <a href="/nuevo/anuncio" class="nav-link">
                 <fa-icon [icon]="['fas','feather-alt']"></fa-icon>
                 <span class="link-text">Publicar Anuncio</span>
             </a>
         </li>
-        <li *ngIf="_id" class="nav-item">
+        <li *ngIf="admintype === 'Normal' || admintype == 'Total'" class="nav-item">
             <a href="#" class="nav-link">
                 <fa-icon [icon]="['fas','glasses']"></fa-icon>
                 <span class="link-text">Ver Registros (Proximamente)</span>
             </a>
         </li>
-        <li *ngIf="_id" class="nav-item">
+        <li *ngIf="admintype" class="nav-item">
             <a href="/perfil/personal" class="nav-link">
                 <fa-icon [icon]="['fas','users-cog']"></fa-icon>
                 <span class="link-text">Mi perfil</span>
             </a>
         </li>
-        <li *ngIf="_id" class="nav-item">
+        <li *ngIf="admintype == 'Total'" class="nav-item">
             <a href="/modificar/codigos" class="nav-link">
                 <fa-icon [icon]="['fas','user-secret']"></fa-icon>
                 <span class="link-text">Editar Codigos</span>
             </a>
         </li>
-        <li *ngIf="_id" class="nav-item">
+        <li *ngIf="admintype" class="nav-item">
             <a href="#" class="nav-link" (click)='logout()'>
                 <fa-icon [icon]="['fas','sign-out-alt']"></fa-icon>
                 <span class="link-text">Cerrar Sesión</span>

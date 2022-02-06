@@ -39,10 +39,6 @@ matcher = new MyErrorStateMatcher();
 
 
 
-//?--INPUTVALIDATOR--------------------------------------------------------------------------------------
-@ViewChild('cardpreview') preview: ElementRef<any> | undefined;
-
-
   constructor(private _HttpService: UsersService,
     private _router:Router,
     private _route:ActivatedRoute,
@@ -53,7 +49,10 @@ matcher = new MyErrorStateMatcher();
   }
 
   login(event:any):void{
-    this._HttpService.login(this.currentUser)
+
+    if(!this.emailFormControl.errors && !this.passFormControl.errors){
+
+      this._HttpService.login(this.currentUser)
     .subscribe((result:any)=>{
             sessionStorage.setItem('userID', result._id); //! Session In
             sessionStorage.setItem('userFirstname', result.firstname); //! Session In
@@ -68,8 +67,12 @@ matcher = new MyErrorStateMatcher();
     },
     (error:any)=>{
       this.errors = error.error;
-      this.errors.problem = "⚠️ Ha ocurrido un problema ";
     })
+    }
+    else{
+      this.errors.problem = "⚠️ Ha ocurrido un problema con alguno de los espacios"
+    }
+    
   }
 
 }

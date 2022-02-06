@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {UsersService} from '../services/users.service';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -30,6 +39,23 @@ errors:any = {};
 
 //!--VARIABLES------------------------------------------------------------------------------------------
 
+nameFormControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]);
+
+lastnameFormControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]);
+
+emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+usernameFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\S*$/)]); 
+
+passFormControl = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^\S*$/)]);
+
+confpassFormControl = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^\S*$/)]);
+
+codeFormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(/^\S*$/)]);
+
+matcher = new MyErrorStateMatcher();
+
+
 
   constructor(private _HttpService: UsersService,
     private _router:Router,
@@ -42,7 +68,6 @@ errors:any = {};
   register(event:any): void{
 
     this.errors = {};
-
       this._HttpService.createNewUser(this.newUser)
       .subscribe(
         (result:any)=>{

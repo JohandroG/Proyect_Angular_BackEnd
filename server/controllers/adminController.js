@@ -9,13 +9,13 @@ const AdminsController = {
 
 
 createNewAdmin : function (req,res) {
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let email = req.body.email;
-    let username = req.body.username;
-    let password = req.body.password;
-    let confpassword = req.body.confpass;
-    let admincode = req.body.admincode;
+    let firstname = req.body.firstname.trim();
+    let lastname = req.body.lastname.trim();
+    let email = req.body.email.trim();
+    let username = req.body.username.trim();
+    let password = req.body.password.trim();
+    let confpassword = req.body.confpass.trim();
+    let admincode = req.body.admincode.trim();
     let admintype;
 //* Validations-------------------------------------------------------------------------------
     let errormsj = {};
@@ -127,8 +127,8 @@ else{
 
 login:function (req,res) {
 
-    let email = req.body.email;
-    let password = req.body.password;
+    let email = req.body.email.trim();
+    let password = req.body.password.trim();
 
     if(email && password){
         AdminModel.getAdminByEmail(email)
@@ -182,7 +182,7 @@ login:function (req,res) {
 
 sendEmail_forgotpass:function (req,res) {
 
-    let emailToRecover = req.body.email;
+    let emailToRecover = req.body.email.trim();
     const recoverToken = "pass" + Date.now() + Math.round(Math.random() * 1E9);
     // console.log(recoverToken);
 
@@ -272,10 +272,10 @@ sendEmail_forgotpass:function (req,res) {
 },//? sendEmail_forgotpass END
 
 changepassword:function (req,res) {
-    let IDToRecover = req.body._id;
-    let recoverToken = req.body.token;
-    let newpassword = req.body.password;
-    let newpasswordconf = req.body.passwordconf;
+    let IDToRecover = req.body._id.trim();
+    let recoverToken = req.body.token.trim();
+    let newpassword = req.body.password.trim();
+    let newpasswordconf = req.body.passwordconf.trim();
     let isValid = true;
     let errormsj = {};
 //!Validations------------------------------------------------------------------------------------

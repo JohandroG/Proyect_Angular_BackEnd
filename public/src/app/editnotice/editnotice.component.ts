@@ -112,31 +112,34 @@ matcher = new MyErrorStateMatcher();
 
 
   updatenotice(event:any):void{
-    
-    this._route.params.subscribe((params:any) => this._id = params.id)
+    if(!this.titleFormControl.errors && !this.descriptionFormControl.errors){
+      this._route.params.subscribe((params:any) => this._id = params.id)
 
-    const formNoticeIndfo = new FormData()
-    this.archivos.forEach((archivo:any) => {
-      formNoticeIndfo.append('noticeImage',archivo)
-    });
+      const formNoticeIndfo = new FormData()
+      this.archivos.forEach((archivo:any) => {
+        formNoticeIndfo.append('noticeImage',archivo)
+      });
 
-    formNoticeIndfo.append('title',this.newNotice.title);
-    formNoticeIndfo.append('description',this.newNotice.description);
-    formNoticeIndfo.append('link',this.newNotice.link);
-    formNoticeIndfo.append('importance',JSON.stringify(this.newNotice.importance));
-    
-    
-    this._HttpNoticesService.updateNotice(this._id,formNoticeIndfo)
-    .subscribe((data:any)=>{
-      console.log("done");
-      console.log(data);
-      this._router.navigate( ['/'] )
+      formNoticeIndfo.append('title',this.newNotice.title);
+      formNoticeIndfo.append('description',this.newNotice.description);
+      formNoticeIndfo.append('link',this.newNotice.link);
+      formNoticeIndfo.append('importance',JSON.stringify(this.newNotice.importance));
       
-    },
-    (error:any)=>{
-      console.log(error);
+      
+      this._HttpNoticesService.updateNotice(this._id,formNoticeIndfo)
+      .subscribe((data:any)=>{
+        console.log("done");
+        console.log(data);
+        this._router.navigate( ['/'] )
+        
+      },
+      (error:any)=>{
+        console.log(error);
+      })
     }
-    )
+    else{
+      this.msj.problem = "⚠️ Ha ocurrido un problema"
+    }
   }
 
   removeIMG():void{

@@ -201,6 +201,10 @@ body{
     /* !See this */
 }
 
+.no-notice{
+    margin: 10px;
+    text-align: center;
+}
 
 @media only screen and (min-width: 481px) and (max-width: 1023px){ 
 
@@ -240,6 +244,10 @@ body{
         width: 100%;
         align-items: center;
         justify-content: space-evenly;
+    }
+
+    .no-notice{
+        margin: 30px;
     }
     
     .notice{

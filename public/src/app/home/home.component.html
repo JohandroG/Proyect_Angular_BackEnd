@@ -1,5 +1,17 @@
 <div class="ifno" *ngIf="notices.length == 0">
-    <h1>🗞️🛑No se han publicado anuncios todavia</h1>
+    <div class="welcome">
+        <div>
+            <h1>Tablero de Anuncios</h1>
+            <div class="singnedas" *ngIf="firstname">
+                <h3 id="log">En sesión: {{firstname}} {{lastname}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <mat-card class="no-notice">
+        <h1>🛑 No se han publicado anuncios todavía 🗞️</h1>
+    </mat-card>
+    
 </div>
 
 
@@ -10,7 +22,7 @@
         <div>
             <h1>Tablero de Anuncios</h1>
             <div class="singnedas" *ngIf="firstname">
-                <h3 id="log">Bienvenido: {{firstname}} {{lastname}}</h3>
+                <h3 id="log">En sesión: {{firstname}} {{lastname}}</h3>
             </div>
         </div>
     </div>

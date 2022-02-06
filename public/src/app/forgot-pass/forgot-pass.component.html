@@ -1,13 +1,37 @@
-<h1>¿Olvidaste tu contraseña?</h1>
+<mat-card>
+    <h1>¿Olvidaste tu contraseña?</h1>
 
-<form (submit)="request_recover_pass($event)">
-    <div class="mail">
-        <label>Introduce tu Email:</label>
-        <input type="text" name="email" id="email" [(ngModel)]="requestinfo.email"/>
+    <div class="info">
+        Si posees una cuenta puedes solicitar un correo con la información necesaria para recuperar tus datos
     </div>
     <div class="msj">
-        {{msj.emailsend}}
+        <span>{{msj.emailsend}}</span>
         {{msj.usernoexits}}
+        {{msj.problem}}
     </div>
-    <button type="submit">Recuperar mi contraseña</button>
-</form>
+    
+
+    <form (submit)="request_recover_pass($event)">
+        <div class="mail">
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Ingresa tu email</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ej. Anuncio Publico" name="email" id="email" [(ngModel)]="requestinfo.email">
+                <mat-hint>Inserta el email</mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Porfavor ingresa un email válido
+                </mat-error>
+                  <mat-error *ngIf="emailFormControl.hasError('required')">
+                    El email es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="space">
+            <button mat-raised-button color="primary">Solicitar Correo</button>
+        </div>
+    </form>
+</mat-card>
+
+

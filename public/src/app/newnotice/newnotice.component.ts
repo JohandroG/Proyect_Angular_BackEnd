@@ -103,32 +103,43 @@ msj:any = {};
 
   createnotice(event:any):void{
     
-    const sessionUsername = sessionStorage.getItem('userUsername');
-    this.newNotice.creator = sessionUsername;
 
-    const formNoticeIndfo = new FormData()
-    this.archivos.forEach((archivo:any) => {
-      formNoticeIndfo.append('noticeImage',archivo)
+    if(!this.titleFormControl.errors && !this.descriptionFormControl.errors){
+
+      const sessionUsername = sessionStorage.getItem('userUsername');
+      this.newNotice.creator = sessionUsername;
+
+      const formNoticeIndfo = new FormData()
+      this.archivos.forEach((archivo:any) => {
+        formNoticeIndfo.append('noticeImage',archivo)
+        
+      });
+
+      formNoticeIndfo.append('title',this.newNotice.title);
+      formNoticeIndfo.append('description',this.newNotice.description);
+      formNoticeIndfo.append('link',this.newNotice.link);
+      formNoticeIndfo.append('importance',JSON.stringify(this.newNotice.importance));
+      formNoticeIndfo.append('creator',this.newNotice.creator);
       
-    });
+      
+      this._HttpNoticesService.createNotice(formNoticeIndfo)
+      .subscribe((data:any)=>{
+        console.log(data);
+        this._router.navigate( ['/'] )
+      },
+      (error:any)=>{
+        this.msj = error.error
+      }
+      )
 
-    formNoticeIndfo.append('title',this.newNotice.title);
-    formNoticeIndfo.append('description',this.newNotice.description);
-    formNoticeIndfo.append('link',this.newNotice.link);
-    formNoticeIndfo.append('importance',JSON.stringify(this.newNotice.importance));
-    formNoticeIndfo.append('creator',this.newNotice.creator);
-    
-    
-    this._HttpNoticesService.createNotice(formNoticeIndfo)
-    .subscribe((data:any)=>{
-      console.log("done");
-      console.log(data);
-      this._router.navigate( ['/'] )
-    },
-    (error:any)=>{
-      this.msj = error.error
     }
-    )
+    else{
+      this.msj.problem = "⚠️ Ha ocurrido un problema"
+    }
+    
+
+
+
   }
 
   mobilepreview():void{

@@ -1,0 +1,121 @@
+.main{
+    margin: 10px;
+    width: auto;
+}
+
+.main h1{
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.main mat-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+form div{
+    width: 75vw;
+}
+
+.space button{
+    width: 60vw;
+    height: 40px;
+    font-size: 20px;
+    background-color: #003367;
+    margin-top: 20px;
+}
+
+.space{
+    text-align: center;
+}
+
+.msj{
+    height: 30px;
+    text-align: center;
+    color: red;
+}
+
+.msj span{
+    height: 40px;
+    text-align: center;
+    color: green;
+    margin: 0;
+    padding: 0;
+}
+
+mat-card h3{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+
+    form div{
+        width: 55vw;
+    }
+    
+    .space button{
+        width: 40vw;
+        height: 40px;
+        font-size: 20px;
+        background-color: #003367;
+        margin-top: 20px;
+    }
+
+    .main{
+        margin: 10px;
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main mat-card{
+        width: 60vw;
+    }
+
+}
+
+@media only screen and (min-width: 1024px){ 
+
+    form div{
+        width: 20vw;
+    }
+    
+    .space button{
+        width: 20vw;
+        height: 40px;
+        font-size: 20px;
+        background-color: #003367;
+        margin-top: 20px;
+    }
+
+    .items{
+        margin: 10px;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .main mat-card{
+        width: 22vw;
+    }
+
+    mat-card h3{
+        font-size: 22px;
+    }
+
+    .main h1{
+        margin-bottom: 30px;
+    }
+
+}

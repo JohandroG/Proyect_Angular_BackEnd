@@ -1,73 +1,72 @@
-<h1>{{firstname}} {{lastname}}</h1>
+<mat-card>
+    <div class="title">
+        <h1>Tu perfil personal</h1>
+    </div>
 
-<h2>{{username}}</h2>
-<h2>{{email}}</h2>
-<h2>{{admintype}}</h2>
-
-<details>
-    <summary>Editar Perfil</summary>
-
-
-    <form>
-
-        <details>
-            <summary>Nombre</summary>
-
-            <div class="firstname">
-                <label>Nombre</label>
-                <input type="text" name="firstname" id="firstname" [(ngModel)]="infoToUpdate.firstname">
-            </div>
-
-        </details>
-
-        <details>
-            <summary>Apellido</summary>
-
-            <div class="lastname">
-                <label>Apellido</label>
-                <input type="text" name="lastname" id="lastname" [(ngModel)]="infoToUpdate.lastname">
-            </div>
-
-        </details>
-
-        <details>
-            <summary>Usuario</summary>
-
-            <div class="username">
-                <label>Usuario</label>
-                <input type="text" name="username" id="username" [(ngModel)]="infoToUpdate.username">
-            </div>
-
-        </details>
-
-        <details>
-            <summary>Email</summary>
-
-            <div class="email">
-                <label>Email</label>
-                <input type="text" name="email" id="email" [(ngModel)]="infoToUpdate.email">
-            </div>
-
-        </details>
-
-        <details>
-            <summary>Contraseña</summary>
-
-            <div class="password">
-                <label>Contraseña Anterior</label>
-                <input type="text" name="password" id="password" [(ngModel)]="infoToUpdate.oldpassword">
-            </div>
-
-            <div class="password">
-                <label>Contraseña Nueva</label>
-                <input type="text" name="password" id="password" [(ngModel)]="infoToUpdate.newpassword">
-            </div>
-
-        </details>
-
-        <div class="button">
-            <button type="submit">Actualizar Informacion</button>
+    <div class="info">
+        <div class="firstname space">
+            <h2>Nombre:</h2>
+            <h3>{{firstname}}</h3>
         </div>
+        
+        <div class="lastname space">
+            <h2>Apellido:</h2>
+            <h3>{{lastname}}</h3>
+        </div>
+        
+        <div class="username space">
+            <h2>Usuario:</h2>
+            <h3>{{username}}</h3>
+        </div>
+        
+        <div class="email space">
+            <h2>Email:</h2>
+            <h3>{{email}}</h3>
+        </div>
+    </div>
 
-    </form>
-</details>
+    <div class="access space">
+        <h4 *ngIf="admintype == 'Total'">
+            Tienes <strong>ACCESO TOTAL</strong> a todas las funciones de la plataforma, puedes:
+        
+            <ul>
+                <li>Ver y leer anuncios publicados</li>
+                <li>Publicar anuncios</li>
+                <li>Editar todos los anuncios</li>
+                <li>Cambiar los códigos de acceso para crear usuarios</li>
+                <li>(Proximamente) Contribuir a llenar los registros telefónicos</li>
+                <li>(Proximamente) Visualizar la informacion de los registros telefónicos</li>
+            </ul>
+        </h4>
+        
+        <h4 *ngIf="admintype == 'Normal'">
+            Tienes <strong>ACCESO NORMAL</strong> a algunas funciones de la plataforma, puedes:
+            <ul>
+                <li>Ver y leer anuncios publicados</li>
+                <li>Publicar anuncios</li>
+                <li>Editar tus propios anuncios</li>
+                <li>(Proximamente) Contribuir a llenar los registros telefónicos</li>
+                <li>(Proximamente) Visualizar la informacion de los registros telefónicos</li>
+            </ul>
+        </h4>
+        
+        <h4 *ngIf="admintype == 'Register'">
+            Tienes <strong>ACCESO A LOS REGISTROS</strong> de la plataforma, puedes:
+            <ul>
+                <li>Ver y leer anuncios publicados</li>
+                <li>(Proximamente) Contribuir a llenar los registros telefónicos</li>
+            </ul>
+        </h4>
+    </div>
+
+    <div class="note">
+        <p><strong>Nota:</strong> Actualmente no es posible actualizar la Información
+        de tu perfil, esto estará disponible proximamente. Si desea cambiar algún dato
+        de su cuenta porfavor pongase en contacto con el administrador de la aplicación.</p>
+    </div>
+
+</mat-card>
+
+
+
+

@@ -2,7 +2,9 @@
     
     <mat-card class="publish" >
         <h1 class="maininfo">Publicar un anuncio Nuevo</h1>
-    
+        <div class="error">
+            {{msj.problem}}
+        </div>
     <form (submit)="createnotice($event)">
 
         <div>

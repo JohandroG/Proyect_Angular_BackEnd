@@ -1,0 +1,78 @@
+mat-card{
+    margin: 10px;
+}
+
+.space{
+    display: flex;
+    align-items: flex-end;
+}
+
+.space h2{
+    margin-right: 10px;
+}
+
+.access{
+    background-color: #001A38;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.note{
+    margin-top: 20px;
+}
+
+.title h1{
+    font-size: 35px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.1ch;
+}
+
+.info{
+    border-top: 0.5px solid rgb(241, 241, 241);
+    border-bottom: 0.5px solid rgb(241, 241, 241);
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+    .space h2{
+        font-size: 25px;
+    }
+
+    .space h3{
+        font-size: 18px;
+    }
+
+    .title h1{
+        font-size: 40px;
+    }
+
+}
+
+@media only screen and (min-width: 1024px){ 
+    .space h2{
+        font-size: 22px;
+    }
+
+    .space h3{
+        font-size: 17px;
+    }
+
+    .title h1{
+        font-size: 40px;
+    }
+
+    .access{
+        width: 50vw;
+    }
+
+    .note{
+        width: 50vw;
+    }
+}

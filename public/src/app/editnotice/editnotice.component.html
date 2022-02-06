@@ -3,7 +3,10 @@
 
     <mat-card class="publish" >
         <h1 class="maininfo">Actualizar Información</h1>
-    
+        <div class="error">
+            {{msj.problem}}
+        </div>
+        
     <form (submit)="updatenotice($event)">
 
         <div>

@@ -19,7 +19,8 @@ const NoticeSchema = new mongoose.Schema({
     },
 
     link : {
-        type : String
+        type : String,
+        default: null
     },
 
     importance : {

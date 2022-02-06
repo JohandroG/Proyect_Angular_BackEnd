@@ -76,6 +76,15 @@ matcher = new MyErrorStateMatcher();
   register(event:any): void{
 
     this.errors = {};
+
+    if(!this.nameFormControl.errors && 
+      !this.lastnameFormControl.errors && 
+      !this.emailFormControl.errors && 
+      !this.usernameFormControl.errors && 
+      !this.passFormControl.errors && 
+      !this.confpassFormControl.errors &&
+      !this.codeFormControl.errors ){
+        
       this._HttpService.createNewUser(this.newUser)
       .subscribe(
         (result:any)=>{
@@ -95,10 +104,11 @@ matcher = new MyErrorStateMatcher();
         },
         (error:any)=>{
           this.errors = error.error;
-          this.errors.problem = "⚠️ Ha ocurrido un problema ";
-        }
-      )
-
+        });
+    }
+    else{
+      this.errors.problem = "⚠️ Ha ocurrido un problema ";
+    }
   }
 
 }

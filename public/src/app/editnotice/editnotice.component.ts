@@ -119,6 +119,7 @@ matcher = new MyErrorStateMatcher();
     this.archivos.forEach((archivo:any) => {
       formNoticeIndfo.append('noticeImage',archivo)
     });
+
     formNoticeIndfo.append('title',this.newNotice.title);
     formNoticeIndfo.append('description',this.newNotice.description);
     formNoticeIndfo.append('link',this.newNotice.link);

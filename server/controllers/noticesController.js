@@ -209,8 +209,16 @@ updatenotice: [
             }
             
             if(link){
-                noticeupdated.link = link;
+                    noticeupdated.link = link;
+                
+                
             }
+            else{
+                if(!link){
+                    noticeupdated.link = ''
+                }
+            }
+            
             if(importance){
                 noticeupdated.importance = importance;
             }

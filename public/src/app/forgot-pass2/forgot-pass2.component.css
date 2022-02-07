@@ -1,0 +1,98 @@
+mat-card{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-card h1{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.space button{
+    width: 60vw;
+    height: 40px;
+    font-size: 20px;
+    background-color: #003367;
+    margin-top: 20px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 84vw;
+    margin-bottom: 10px;
+}
+
+.msj{
+    height: 40px;
+    color: red;
+    display: flex;
+    align-items: center;
+}
+
+.msj span{
+    color: green;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+mat-card{
+    margin: 10px 20px;
+}
+
+form div{
+    width: 70vw;
+}
+
+mat-card h1{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.space button{
+    width: 50vw;
+    height: 40px;
+    font-size: 20px;
+    background-color: #003367;
+    margin-top: 30px;
+}
+
+
+}
+
+@media only screen and (min-width: 1024px){ 
+
+    mat-card{
+        margin: 10px 20px;
+        width: 50vw;
+    }
+    
+    mat-card h1{
+        font-size: 30px;
+        font-weight: 500;
+    }
+    
+    .space button{
+        width: 30vw;
+        height: 40px;
+        font-size: 20px;
+        background-color: #003367;
+        margin-top: 30px;
+    }
+    
+    .example-full-width {
+        width: 100%;
+    }
+    
+    form div{
+        width: 40vw;
+    }
+
+}

@@ -1,31 +1,76 @@
-<h1>Cambia tu contraseña</h1>
 
-<form (submit)="request_recover_pass($event)">
-    <div class="msj">
-        {{msj.empty}}
-        {{msj.msjerror}}
-        {{msj.success}}
-    </div>
+<mat-card>
+    <h1>Cambia tu contraseña</h1>
 
-    <div class="code">
-        <label>Codigo:</label>
-        <input type="text" name="code" id="code" [(ngModel)]="requestinfo.token"/>
-    </div>
-    <div class="msj">
-        {{msj.wrongtoken}}
-    </div>
+    <form (submit)="request_recover_pass($event)">
+        
+        <div class="msj">
+            {{msj.empty}}
+            {{msj.msjerror}}
+            <span>{{msj.success}}</span>
+            {{msj.problem}}
+            {{msj.passnotmatch}}
+            {{msj.wrongtoken}}
+        </div>
 
-    <div class="pass">
-        <label>Nueva Contraseña:</label>
-        <input type="text" name="pass" id="pass" [(ngModel)]="requestinfo.password"/>
-    </div>
+        <div class="code">
 
-    <div class="confpass">
-        <label>Codigo:</label>
-        <input type="text" name="confpass" id="confpass" [(ngModel)]="requestinfo.passwordconf"/>
-    </div>
-    <div class="msj">
-        {{msj.passnotmatch}}
-    </div>
-    <button type="submit">Cambiar Contraseña</button>
-</form>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Código de confirmación</mat-label>
+                <input type="email" matInput [formControl]="codeFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ej. Anuncio Publico" name="code" id="code" [(ngModel)]="requestinfo.token">
+                <mat-hint>Inserta el código</mat-hint>
+                  <mat-error *ngIf="codeFormControl.hasError('required')">
+                    El código es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+
+        <div class="pass">
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nueva Contraseña</mat-label>
+                <input type="email" matInput [formControl]="passFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ej. Anuncio Publico" name="pass" id="pass" [(ngModel)]="requestinfo.password">
+                <mat-hint>Inserta la nueva contraseña</mat-hint>
+                <mat-error *ngIf="passFormControl.hasError('minlength') && !passFormControl.hasError('required')">
+                    Usa mínimo 8 caracteres
+                </mat-error>
+                <mat-error *ngIf="passFormControl.hasError('pattern') && !passFormControl.hasError('required')">
+                    La contraseña no puede tener espacios
+                </mat-error>
+                  <mat-error *ngIf="passFormControl.hasError('required')">
+                    La nueva contraseña es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="confpass">
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Confirmar Contraseña</mat-label>
+                <input type="email" matInput [formControl]="confpassFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ej. Anuncio Publico" name="confpass" id="confpass" [(ngModel)]="requestinfo.passwordconf">
+                <mat-hint>Confirma la nueva contraseña</mat-hint>
+                <mat-error *ngIf="confpassFormControl.hasError('minlength') && !confpassFormControl.hasError('required')">
+                    Usa mínimo 8 caracteres
+                </mat-error>
+                <mat-error *ngIf="confpassFormControl.hasError('pattern') && !confpassFormControl.hasError('required')">
+                    La confirmación no puede tener espacios
+                </mat-error>
+                  <mat-error *ngIf="confpassFormControl.hasError('required')">
+                    La confirmación de contraseña es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+
+        <div class="space">
+            <button mat-raised-button color="primary">Cambiar contraseña</button>
+        </div>
+
+    </form>
+</mat-card>

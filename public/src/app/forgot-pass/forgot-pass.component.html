@@ -13,7 +13,6 @@
 
     <form (submit)="request_recover_pass($event)">
         <div class="mail">
-
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Ingresa tu email</mat-label>
                 <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"

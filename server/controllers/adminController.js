@@ -186,7 +186,7 @@ login:function (req,res) {
 sendEmail_forgotpass:function (req,res) {
 
     let emailToRecover = req.body.email.trim();
-    const recoverToken = "pass" + Date.now() + Math.round(Math.random() * 1E9);
+    const recoverToken = "RT" + Date.now() + Math.round(Math.random() * 1E9);
     // console.log(recoverToken);
 
     AdminModel.getAdminByEmail(emailToRecover)
@@ -198,50 +198,55 @@ sendEmail_forgotpass:function (req,res) {
             AdminModel.updateadmin(data._id,tokensetter)
             .then(data=>{
                 transporter.sendMail({
-                    from: '"Recuperacion de contraseña 📮" <elestadiocn.notific@gmail.com>', // sender address
+                    from: '"Recuperacion de contraseña" <elestadiocn.notific@gmail.com>', // sender address
                     to: emailToRecover, // list of receivers
                     subject: "Programa de Recuperacion de contraseña", // Subject line
                 //!EMAIL------------------------------------------------------
                 //Todo: Ver si siempre vamos a usar ese recovery token
                 //Todo: Terminar de ajustar el enlace que envia el correo (Para el deployment)
-                    html: `<!DOCTYPE html>
-                    <html lang="es">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Recuperacion</title>
-                        <link rel="preconnect" href="https://fonts.googleapis.com">
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-                    </head>
-                    <body style="font-family: 'Roboto', sans-serif;width: 500px;">
-                        <h1>Has solicitado un cambio de contraseña 🔐</h1>
-                        <p style="margin: 5px 0px;"> Hola ${data.firstname}:</p>
-                        <p style="margin: 5px 0px;">Recibimos una solicitud para restablecer tu contraseña.</p>
-                        <p style="margin: 5px 0px;">Ingresa el siguiente codigo
-                        <a href="http://localhost:4200/restablecer/contra/${data._id}">aquí</a> para restablecer tu contraseña:</p>
-                        
-                        <h2 style="background-color: rgb(171, 212, 231);
-                        width: auto;
-                        padding: 10px;
-                        border-radius: 10px;
-                        color: rgb(0, 0, 0);
-                        text-align: center;">${data.recoverToken}</h2> 
-                    
-                        <p style="margin: 5px 0px;margin-bottom: 10px; font-weight: 600;">También puedes usar el codigo aqui directamente.</p>
-                        
-                        <div style="display: flex; justify-content: center; margin: 0;">
-                            <a href="http://localhost:8080/restablecer/contra/${data._id}" style="padding: 7px 150px;
-                            background-color: rgb(11, 11, 99);
-                            color: white;
-                            text-decoration: none;
-                            border-radius: 10px;
-                            font-size: 16px;
-                            margin-bottom: 20px;">Cambiar Contraseña</a>
-                        </div>
-                    </body>
-                    </html>`
+                    html: ` <!DOCTYPE html>
+                            <html lang="es">
+                            <head>
+                                <meta charset="UTF-8">
+                                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <title>Recuperacion</title>
+                                <link rel="preconnect" href="https://fonts.googleapis.com">
+                            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+                            </head>
+                            <body style="font-family: 'Roboto', sans-serif;width: 40vw;">
+                                <h1 style="text-align: center;">Solicitud de cambio de contraseña 🔐</h1>
+                                <p style="margin: 5px 0px;"> Hola ${data.firstname}</p>
+                                <p style="margin: 5px 0px;">Recibimos una solicitud para restablecer tu contraseña.</p>
+                                <p style="margin: 5px 0px; font-weight: 500; margin-top: 20px;">Ingresa el siguiente codigo 
+                                    <a href="http://localhost:8080/restablecer/contra/${data._id}" style="text-decoration: none; color: rgb(51, 51, 245);">aquí</a>
+                                    para restablecer tu contraseña:</p>
+                                
+                                <div style="display: flex; justify-content: center;">
+                                    <h2 style="background-color: rgb(124, 187, 250);
+                                    width: 35vw;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    color: rgb(0, 0, 0);
+                                    text-align: center;">${data.recoverToken}</h2>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: center; margin: 0;">
+                                    <a href="http://localhost:8080/restablecer/contra/${data._id}" style=" width: 22vw;
+                                    padding: 10px 0px;
+                                    text-align: center;
+                                    background-color: rgb(0,51,103);
+                                    color: white;
+                                    text-decoration: none;
+                                    border-radius: 10px;
+                                    font-size: 16px;
+                                    margin-bottom: 20px;">Toca para cambiar la Contraseña</a>
+                                </div>
+
+                                <p><strong>Nota:</strong> Si tu no solicitaste este cambio de contraseña puedes ignorar este correo...</p>
+                            </body>
+                            </html>`
             //!EMAIL------------------------------------------------------
 
                 }).then(data=>{

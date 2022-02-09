@@ -5,6 +5,8 @@
         <h1 class="maininfo">Actualizar Información</h1>
         <div class="error">
             {{msj.problem}}
+            {{msj.noremove}}
+            <span>{{msj.success}}</span>
         </div>
         
     <form (submit)="updatenotice($event)">
@@ -70,7 +72,7 @@
     
             <div class="but">
                 <button class="sub" mat-raised-button  color="primary">Actualizar</button>
-                <button type="button" class="prevbut" mat-raised-button  color="warn" (click)="mobilepreview()">Vista Previa</button>
+                <button type="button" class="prevbut" mat-raised-button  color="warn" (click)="mobilepreview()">Ver</button>
             </div>
 
     </form>
@@ -83,11 +85,11 @@
         <mat-card class="prevcard">
             <div class="extra-options">
                 
-                <button mat-fab color="warn" (click)='deleteNotice($event)'>
+                <button mat-fab color="warn" (click)='showdelete()'>
                     <mat-icon>delete</mat-icon>
                 </button>
                 
-                <button mat-fab color="warn" (click)='removeIMG()'>
+                <button mat-fab color="warn" (click)='showdeleteimg()'>
                     <fa-icon [icon]="['fas','images']" style="font-size: 20px;"></fa-icon>
                 </button>
             </div>
@@ -190,19 +192,6 @@
                                     </div>
                                 </a>
                 
-                                <!-- <a class="stat"  href="editar/anuncio/{{notice._id}}" *ngIf="notice.creator === username || admintype == 'Total' ">
-                                    <div class="value">
-                                        <a href="editar/anuncio/{{notice._id}}">
-                                            <fa-icon [icon]="['fas','edit']"></fa-icon>
-                                        </a>
-                                    </div>
-                                    <div class="type">
-                                        <a href="editar/anuncio/{{notice._id}}">
-                                            Editar
-                                        </a>
-                                    </div>
-                                </a> -->
-                
                                 
                             </div>
             
@@ -212,5 +201,44 @@
             
             </mat-card>
     </div>
+
+    <div class="hidebg" #background (click)='hideinfo()'></div>
+
+        <div class="hideinfo" #removenotice>
+            <mat-card>
+                <div class="cancel">
+                    <h1>Eliminar esta publicación</h1>
+                    <button mat-raised-button color="warn" (click)='hideinfo()'>X</button>
+                </div>
+                <h3><strong>Esto eliminará la publicación permanentemente,</strong>
+                    esta acción no se puede revertir,
+                    ni seras capaz de recuperar esta publicación ni su contenido.
+                </h3>
+                <h2>¿Deseas Continuar?</h2>
+                
+                <button mat-raised-button color="warn" (click)="deleteNotice($event)">
+                    Eliminar Definitivamente
+                </button>
+            </mat-card>
+        </div>
+    
+
+        <div class="hideinfo" #removeimage>
+            <mat-card>
+                <div class="cancel">
+                    <h1>Eliminar Imagen</h1>
+                    <button mat-raised-button color="warn" (click)="hideinfo()">X</button>
+                </div>
+                <h3><strong>Si esta publicación tiene una imagen la eliminará permanentemente,</strong> 
+                    esta acción no se puede revertir,
+                    por lo que si deseas recuperar la imagen deberás subirla de nuevo.
+                </h3>
+                <h2>¿Deseas Continuar?</h2>
+                
+                <button mat-raised-button color="warn" (click)="removeIMG($event)">
+                    Eliminar Imagen
+                </button>
+            </mat-card>
+        </div>
 
 </div>

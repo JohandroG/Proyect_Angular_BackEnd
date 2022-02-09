@@ -108,6 +108,10 @@
 .notice:hover {
     box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
     transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    -o-transform: scale(1.15);
 }
 .notice {
     transition: 0.5s ease;
@@ -272,6 +276,72 @@ input:focus + label {
     color: red;
 }
 
+.hideinfo{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transition: 400ms;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+    -ms-transition: 400ms;
+    -o-transition: 400ms;
+    top: 2vh;
+}
+
+.hidebg{
+    visibility: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 250vh;
+    background: #00346756;
+}
+
+.info{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    top: 2vh;
+}
+
+.bg{
+    visibility: visible;
+    position: fixed;
+    width: 100vw;
+    height: 250vh;
+    background: #00346756;
+}
+
+
+.delete-info{
+    position: relative;
+}
+
+.cancel{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cancel button{
+    font-size: 20px;
+}
+
+.error span{
+    color: green;
+}
+
 
 @media only screen and (min-width: 481px) and (max-width: 1023px){ 
 
@@ -316,6 +386,21 @@ form{
     justify-content: space-between;
     width: 20vw;
 }
+
+.info{
+    top: 10vh;
+    width: 60vw;
+}
+
+
+.hideinfo{
+    top: 10vh;
+    width: 60vw;
+}
+
+
+
+
 
 }
 
@@ -365,5 +450,31 @@ form{
     width: 15vw;
 }
 
+button{
+    transition: 300ms ease;
+        -webkit-transition: 300ms ease;
+        -moz-transition: 300ms ease;
+        -ms-transition: 300ms ease;
+        -o-transition: 300ms ease;
+}
+
+button:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.info{
+    top: 20vh;
+    width: 40vw;
+}
+
+
+.hideinfo{
+    top: 20vh;
+    width: 40vw;
+}
 
 }

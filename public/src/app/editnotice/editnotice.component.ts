@@ -54,6 +54,10 @@ matcher = new MyErrorStateMatcher();
 //?--INPUTVALIDATOR--------------------------------------------------------------------------------------
 @ViewChild('cardpreview') preview: ElementRef<any> | undefined;
 
+@ViewChild('removenotice') r_notice: ElementRef<any> | undefined;
+@ViewChild('removeimage') r_image: ElementRef<any> | undefined;
+@ViewChild('background') background: ElementRef<any> | undefined;
+
 
 
 
@@ -101,7 +105,7 @@ matcher = new MyErrorStateMatcher();
     this._HttpNoticesService.findNotice(this._id)
     .subscribe((data:any)=>{
       this.newNotice.title = data.title
-      this.newNotice.description = data.description
+      this.newNotice.description = data.description.split("<br/>").join("\n")
       this.newNotice.link = data.link
       this.newNotice.importance = data.importance
       // this.newNotice.creator = data.creator
@@ -121,7 +125,7 @@ matcher = new MyErrorStateMatcher();
       });
 
       formNoticeIndfo.append('title',this.newNotice.title);
-      formNoticeIndfo.append('description',this.newNotice.description);
+      formNoticeIndfo.append('description',this.newNotice.description.split("\n").join("<br/>"));
       formNoticeIndfo.append('link',this.newNotice.link);
       formNoticeIndfo.append('importance',JSON.stringify(this.newNotice.importance));
       
@@ -142,7 +146,7 @@ matcher = new MyErrorStateMatcher();
     }
   }
 
-  removeIMG():void{
+  removeIMG(event:any):void{
     this._route.params.subscribe((params:any) => this._id = params.id)
 
     this._HttpNoticesService.deleteNoticeIMG(this._id)
@@ -152,6 +156,10 @@ matcher = new MyErrorStateMatcher();
     (error:any)=>{
       this.msj = error.error
     })
+
+    this.renderer2.removeClass(this.r_image?.nativeElement,'info')
+    this.renderer2.removeClass(this.background?.nativeElement,'bg')
+    
   }
 
 
@@ -171,6 +179,23 @@ matcher = new MyErrorStateMatcher();
 
   mobilepreview():void{
     this.renderer2.addClass(this.preview?.nativeElement,'appear')
+  }
+
+  showdelete():void{
+    
+    this.renderer2.addClass(this.r_notice?.nativeElement,'info')
+    this.renderer2.addClass(this.background?.nativeElement,'bg')
+  }
+
+  showdeleteimg():void{
+    this.renderer2.addClass(this.r_image?.nativeElement,'info')
+    this.renderer2.addClass(this.background?.nativeElement,'bg')
+  }
+
+  hideinfo():void{
+    this.renderer2.removeClass(this.r_notice?.nativeElement,'info')
+    this.renderer2.removeClass(this.r_image?.nativeElement,'info')
+    this.renderer2.removeClass(this.background?.nativeElement,'bg')
   }
 
 

@@ -34,6 +34,7 @@ newNotice:any = {
   creator : ""
 }
 
+descprev:any = this.newNotice.description.split("\n").join("<br />")
 
 imgprev:any = ""
 imgnameprev:any = ""
@@ -116,7 +117,7 @@ msj:any = {};
       });
 
       formNoticeIndfo.append('title',this.newNotice.title);
-      formNoticeIndfo.append('description',this.newNotice.description);
+      formNoticeIndfo.append('description',this.newNotice.description.split("\n").join("<br/>"));
       formNoticeIndfo.append('link',this.newNotice.link);
       formNoticeIndfo.append('importance',JSON.stringify(this.newNotice.importance));
       formNoticeIndfo.append('creator',this.newNotice.creator);

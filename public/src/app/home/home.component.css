@@ -117,6 +117,7 @@ body{
     box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
     transform: scale(1.15);
 }
+
 .notice {
     transition: 0.5s ease;
     margin:20px;

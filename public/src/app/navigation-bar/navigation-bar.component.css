@@ -120,7 +120,7 @@ transition: var(--transition-speed);
 
 
 /* Small screens */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
     .navbar {
     bottom: 0;
     width: 100vw;
@@ -156,7 +156,7 @@ transition: var(--transition-speed);
 }
 
   /* Large screens */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 481px) {
     .navbar {
         top: 0;
         width: 5rem;

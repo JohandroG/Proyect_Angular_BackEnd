@@ -340,5 +340,21 @@ form{
     height: 65px;
 }
 
+button{
+    transition: 300ms ease;
+        -webkit-transition: 300ms ease;
+        -moz-transition: 300ms ease;
+        -ms-transition: 300ms ease;
+        -o-transition: 300ms ease;
+}
+
+button:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
 
 }

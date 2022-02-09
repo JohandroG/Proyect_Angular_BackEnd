@@ -60,7 +60,7 @@
                         <h2>{{notice.title}}</h2>
                     </div>
                     <div class="descriptioncont">
-                        <p>{{notice.description}}</p>
+                        <p [innerHTML]='notice.description.split("<br/>").join(" ")'></p>
                     </div>
                 </div>
                 

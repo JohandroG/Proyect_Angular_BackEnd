@@ -28,15 +28,20 @@ mat-card{
     align-items: flex-start;
 }
 
+.info h3{
+    white-space: pre-wrap;
+}
+
+
 .info * {
     margin: 5px 0px;
 }
 
 .extra{
+    margin-right: 0;
     margin-top: 25px;
     display: flex;
     justify-content: space-evenly;
-    width: 80vw;
     align-items: center;
 }
 
@@ -70,6 +75,9 @@ mat-card{
 
 @media only screen and (min-width: 1024px){ 
     
+    main{
+        margin: 20px;
+    }
 
     mat-card{
         flex-direction: row-reverse;
@@ -86,8 +94,26 @@ mat-card{
     }
 
     .extra{
-        width: 30vw;
+        display: flex;
+        justify-content: flex-start;
     }
+
+    .extra a {
+        margin-right: 40px;
+        transition: 300ms ease;
+        -webkit-transition: 300ms ease;
+        -moz-transition: 300ms ease;
+        -ms-transition: 300ms ease;
+        -o-transition: 300ms ease;
+}
+
+    .extra a:hover{
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+}
     
     .images{
         max-width: 40vw;

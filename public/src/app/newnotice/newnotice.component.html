@@ -68,7 +68,7 @@
     
         <div class="but">
             <button class="sub" mat-raised-button  color="primary">Publicar</button>
-            <button type="button" class="prevbut" mat-raised-button  color="warn" (click)="mobilepreview()">Vista Previa</button>
+            <button type="button" class="prevbut" mat-raised-button  color="warn" (click)="mobilepreview()">Ver</button>
         </div>
 
     </form>
@@ -99,7 +99,7 @@
                                 <h2 *ngIf="!newNotice.title">Tu anuncio se verá así</h2>
                             </div>
                             <div class="descriptioncont">
-                                <p class="desc">{{newNotice.description}}</p>
+                                <p class="desc" [innerHTML]='newNotice.description.split("&nbsp;").join(" ")'></p>
                             </div>
                         </div>
                         

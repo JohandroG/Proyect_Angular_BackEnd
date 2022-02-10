@@ -47,7 +47,7 @@ app.use( '/notices', NoticeRouter );
 //*PORT------------------------------------------------------------------------------------------
 
 //! let port = 8080
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 
 app.listen(port, function(){
     console.log("This server is working on port: 8080");

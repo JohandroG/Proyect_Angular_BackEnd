@@ -33,9 +33,9 @@ app.use( '/codes', CodeRouter );
 app.use( '/notices', NoticeRouter );
 
 
-// app.all('*', function (req,res) {
-//     res.sendFile(path.resolve("./public/dist/public/index.html"))
-// })
+app.all('*', function (req,res) {
+    res.sendFile(path.resolve(".././public/dist/public/index.html"))
+})
 
 //*ANGULAR------------------------------------------------------------------------------------------
 

@@ -44,7 +44,7 @@ app.all('*', function (req,res) {
 //     res.sendFile(path.resolve("./public/dist/public/index.html"))
 // })
 
-//*PORT----------------------------------------------------------------------------------------
+//*PORTS----------------------------------------------------------------------------------------
 
 //! let port = 8080
 const port = process.env.PORT || 8080;

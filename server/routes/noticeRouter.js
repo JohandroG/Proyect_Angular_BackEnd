@@ -8,6 +8,8 @@ const {NoticesController} = require( './../controllers/noticesController' );
 NoticeRouter.route('/galln').get(NoticesController.requestallNotices);
 NoticeRouter.route('/findn/:_id').get(NoticesController.findNotice);
 
+NoticeRouter.route('/notice/image/:key').get(NoticesController.getimages);
+
 //*POST
 NoticeRouter.route('/create').post(NoticesController.createNotice);
 

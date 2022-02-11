@@ -1,12 +1,14 @@
 const {NoticeModel} = require( './../models/noticeModel' );
 const fs = require('fs');
 const multer  = require('multer');
-
+const {uploadFile, getFileStream, deleteFile} = require('../../s3');
+const util = require('util')
+const unlinkFile = util.promisify(fs.unlink);
 
 //*------------MULTER IMAGE UPLOAD---------------------------------------------------------------------------
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads');
+        cb(null, './uploads/images');
     },
     filename: function(req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -39,14 +41,12 @@ const NoticesController = {
 createNotice : [
     upload.single( 'noticeImage' ),
 
-    function (req,res) {
+    async function (req,res) {
 
-        
         let title = req.body.title;
         let description = req.body.description;
-        if(req.file){
-            var picture = req.file.path;
-        }
+        const file = req.file
+        let picture = null;
         let link = req.body.link;
         let importance = req.body.importance;
         let creator = req.body.creator;
@@ -75,6 +75,13 @@ if(description.length < 8 ){
 
     if(isValid){
         
+        //Upload file to S3
+        if(file){
+            const result = await uploadFile(file)
+            picture = result.key
+            await unlinkFile(file.path) //remove this for not heroku
+        }
+        //--------------------------------------------------------
             newNotice = {
                 title,
                 description,
@@ -116,16 +123,7 @@ deletenotice: function (req,res) {
     NoticeModel.findNoticeByID(id)
     .then(info =>{
         if(info.picture){
-            let filename = info.picture.substring(8);
-            try{
-                fs.unlinkSync('./uploads/' + filename)
-            }
-            catch(err){
-                console.log(err);
-            }
-            finally{
-                console.log("File deleted");
-            }
+            deleteFile(info.picture)
         }
         NoticeModel.deleteNoticeByID(id)
         .then(data=>{
@@ -150,21 +148,26 @@ deletenotice: function (req,res) {
 
 updatenotice: [
     upload.single( 'noticeImage' ),
-        function (req,res) {
+    async function (req,res) {
 
         id = req.params.id
         let errormsj = {};
 
         let title = req.body.title;
         let description = req.body.description;
-        //*----------------------
-        if(req.file){
-            var picture = req.file.path;
-        }
-        //*----------------------
+        const file = req.file;
+        let picture = null;
         let link = req.body.link;
         let importance = req.body.importance;
         let updated_at = new Date();
+
+        //Upload file to S3
+        if(file){
+            const result = await uploadFile(file)
+            picture = result.key
+            await unlinkFile(file.path) //remove this for not heroku
+        }
+        //--------------------------------------------------------
 
         NoticeModel.findNoticeByID(id)
         .then(info =>{
@@ -191,27 +194,14 @@ updatenotice: [
                 }
                 noticeupdated.description = description;
             }
-            if(picture){
+            if(file){
                 if(info.picture !== null){
-                    let filename = info.picture.substring(8);
-                    try{
-                        fs.unlinkSync('./uploads/' + filename)
-                    }
-                    catch(err){
-                        console.log(err);
-                    }
-                    finally{
-                        console.log("File deleted");
-                    }
+                    deleteFile(info.picture)
                 }
-                
                 noticeupdated.picture = picture;
             }
-            
             if(link){
                     noticeupdated.link = link;
-                
-                
             }
             else{
                 if(!link){
@@ -243,6 +233,7 @@ updatenotice: [
             errormsj = {
                 msj: "You can not update a notice that doesn't exits"
             }
+            deleteFile(file.filename) //Todo: remiendo raro por el await, arreglar luego
             console.log(err);
             res.json(errormsj)
         })
@@ -257,15 +248,7 @@ deleteIMG : function (req,res) {
     .then(info =>{
         if(info.picture){
 
-            console.log(info);
-
-            let filename = info.picture.substring(8);
-            try{
-                fs.unlinkSync('./uploads/' + filename)
-            }
-            catch(err){
-                console.log(err);
-            }
+            deleteFile(info.picture)
 
             updatedNotice = {
                 picture : null,
@@ -317,7 +300,14 @@ findNotice: function (req,res) {
     .catch(err=>{
         res.status(400).end()
     })
+},
+
+getimages: function(req,res){
+    const key = req.params.key
+    const readStream = getFileStream(key)
+    readStream.pipe(res)
 }
+
 
 
 }

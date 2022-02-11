@@ -204,7 +204,7 @@ sendEmail_forgotpass:function (req,res) {
                 //!EMAIL------------------------------------------------------
                 //Todo: Ver si siempre vamos a usar ese recovery token
                 //Todo: Terminar de ajustar el enlace que envia el correo (Para el deployment)
-                    html: ` <!DOCTYPE html>
+                    html: `<!DOCTYPE html>
                             <html lang="es">
                             <head>
                                 <meta charset="UTF-8">
@@ -215,12 +215,12 @@ sendEmail_forgotpass:function (req,res) {
                             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                             <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
                             </head>
-                            <body style="font-family: 'Roboto', sans-serif;width: 40vw;">
+                            <body style="font-family: 'Roboto', sans-serif;width: auto; text-align: center; border: 2px solid black; border-radius: 10px; padding: 20px;">
                                 <h1 style="text-align: center;">Solicitud de cambio de contraseña 🔐</h1>
                                 <p style="margin: 5px 0px;"> Hola ${data.firstname}</p>
                                 <p style="margin: 5px 0px;">Recibimos una solicitud para restablecer tu contraseña.</p>
                                 <p style="margin: 5px 0px; font-weight: 500; margin-top: 20px;">Ingresa el siguiente codigo 
-                                    <a href="http://localhost:8080/restablecer/contra/${data._id}" style="text-decoration: none; color: rgb(51, 51, 245);">aquí</a>
+                                    <a href="https://johandrog.github.io/Tablero-de-Anuncios/restablecer/contra/${data._id}" style="text-decoration: none; color: rgb(51, 51, 245);">aquí</a>
                                     para restablecer tu contraseña:</p>
                                 
                                 <div style="display: flex; justify-content: center;">
@@ -232,9 +232,9 @@ sendEmail_forgotpass:function (req,res) {
                                     text-align: center;">${data.recoverToken}</h2>
                                 </div>
                                 
-                                <div style="display: flex; justify-content: center; margin: 0;">
-                                    <a href="http://localhost:8080/restablecer/contra/${data._id}" style=" width: 22vw;
-                                    padding: 10px 0px;
+                                
+                                    <a href="https://johandrog.github.io/Tablero-de-Anuncios/restablecer/contra/${data._id}" style=" width: 22vw;
+                                    padding: 10px;
                                     text-align: center;
                                     background-color: rgb(0,51,103);
                                     color: white;
@@ -242,11 +242,12 @@ sendEmail_forgotpass:function (req,res) {
                                     border-radius: 10px;
                                     font-size: 16px;
                                     margin-bottom: 20px;">Toca para cambiar la Contraseña</a>
-                                </div>
+                                
 
                                 <p><strong>Nota:</strong> Si tu no solicitaste este cambio de contraseña puedes ignorar este correo...</p>
                             </body>
                             </html>`
+                            
             //!EMAIL------------------------------------------------------
 
                 }).then(data=>{

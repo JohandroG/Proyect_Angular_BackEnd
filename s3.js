@@ -2,10 +2,10 @@ require('dotenv').config()
 const fs = require('fs')
 const S3 = require("aws-sdk/clients/s3")
 
-const bucketname = "noticeboard-proyect-files"
-const region = "us-east-1"
-const accessKeyId = "AKIAQWBTEVFO4NQP2MCP"
-const secretAccessKey = "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"
+const bucketname = process.env.AWS_BUCKET_NAME;
+const region = process.env.AWS_BUCKET_REGION;
+const accessKeyId = process.env.AWS_ACCESS_KEY;
+const secretAccessKey = process.env.AWS_SECRET_KEY;
 
 
 const s3 = new S3({

@@ -123,7 +123,8 @@ deletenotice: function (req,res) {
     NoticeModel.findNoticeByID(id)
     .then(info =>{
         if(info.picture){
-            // deleteFile(info.picture) ---------------------------------------------------------------------------
+            //* ---------------------------------------------------------------------------------------------------
+            deleteFile(info.picture) 
         }
         NoticeModel.deleteNoticeByID(id)
         .then(data=>{
@@ -196,7 +197,8 @@ updatenotice: [
             }
             if(file){
                 if(info.picture !== null){
-                    // deleteFile(info.picture) ------------------------------------------------------------------
+                    //*---------------------------------------------------------------------------------------
+                    deleteFile(info.picture) 
                 }
                 noticeupdated.picture = picture;
             }
@@ -247,9 +249,9 @@ deleteIMG : function (req,res) {
     NoticeModel.findNoticeByID(id)
     .then(info =>{
         if(info.picture){
-
-            // deleteFile(info.picture) -------------------------------------------------------------------
-
+            //*--------------------------------------------------------------------------------------------------
+            deleteFile(info.picture) 
+            
             updatedNotice = {
                 picture : null,
             }

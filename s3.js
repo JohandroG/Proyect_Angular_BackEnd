@@ -34,17 +34,18 @@ function uploadFile(file){
 function getFileStream(fileKey){
     const downloadParams = {
         Key: fileKey,
-        Bucket: bucketname
+        Bucket: bucketname,
+        region
     }
     return s3.getObject(downloadParams).createReadStream()
 }
 
 function deleteFile(fileKey){
-    const downloadParams = {
+    const filetodelete = {
         Key: fileKey,
         Bucket: bucketname
     }
-    return s3.deleteObject(downloadParams).createReadStream()
+    return s3.deleteObject(filetodelete).createReadStream()
 }
 
 

@@ -23,7 +23,6 @@ function uploadFile(file){
         Body: fileStream,
         Key: file.filename
     }
-
     return s3.upload(uploadParams).promise();
 }
 
@@ -34,8 +33,7 @@ function uploadFile(file){
 function getFileStream(fileKey){
     const downloadParams = {
         Key: fileKey,
-        Bucket: bucketname,
-        region
+        Bucket: bucketname
     }
     return s3.getObject(downloadParams).createReadStream()
 }

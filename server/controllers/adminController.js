@@ -200,7 +200,7 @@ sendEmail_forgotpass:function (req,res) {
                 transporter.sendMail({
                     from: '"Recuperacion de contraseña" <elestadiocn.notific@gmail.com>', // sender address
                     to: emailToRecover, // list of receivers
-                    subject: "Programa de Recuperacion de contraseña", // Subject line
+                    subject: "Tu solicitud de recuperacion de contraseña", // Subject line
                 //!EMAIL------------------------------------------------------
                 //Todo: Ver si siempre vamos a usar ese recovery token
                 //Todo: Terminar de ajustar el enlace que envia el correo (Para el deployment)
@@ -215,22 +215,25 @@ sendEmail_forgotpass:function (req,res) {
                             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                             <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
                             </head>
-                            <body style="font-family: 'Roboto', sans-serif;width: auto; text-align: center; border: 2px solid black; border-radius: 10px; padding: 20px;">
-                                <h1 style="text-align: center;">Solicitud de cambio de contraseña 🔐</h1>
-                                <p style="margin: 5px 0px;"> Hola ${data.firstname}</p>
-                                <p style="margin: 5px 0px;">Recibimos una solicitud para restablecer tu contraseña.</p>
-                                <p style="margin: 5px 0px; font-weight: 500; margin-top: 20px;">Ingresa el siguiente codigo 
+                            <body style="font-family: 'Roboto', sans-serif;width: auto; text-align: center; border: 2px solid black; border-radius: 10px; padding: 10px; margin: 5px;">
+                                <h1 style="text-align: center;">📮 Solicitud de cambio de contraseña</h1>
+                                <h4 style="margin: 5px 0px;"> Saludos ${data.firstname}</h4>
+                                <p style="margin: 5px 0px;">Hemos recibido una solicitud para restablecer la contraseña de tu cuenta, porfavor sigue los pasos a continuación:</p>
+                                <p style="margin: 5px 0px; font-weight: 500; margin-top: 20px;">Ingresa el codigo que comienza con "RT"
                                     <a href="https://johandrog.github.io/Tablero-de-Anuncios/restablecer/contra/${data._id}" style="text-decoration: none; color: rgb(51, 51, 245);">aquí</a>
-                                    para restablecer tu contraseña:</p>
+                                    para restablecer tu contraseña, o presiona sobre el boton de la parte inferior.</p>
                                 
-                                <div style="display: flex; justify-content: center;">
-                                    <h2 style="background-color: rgb(124, 187, 250);
-                                    width: 35vw;
+                                
+                                    <h2 style="text-align: center;
+                                    background-color: rgb(124, 187, 250);
+                                    width: auto;
                                     padding: 10px;
+                                    margin: 10px 2px;
+                                    margin-bottom: 25px;
                                     border-radius: 10px;
                                     color: rgb(0, 0, 0);
-                                    text-align: center;">${data.recoverToken}</h2>
-                                </div>
+                                    ">${data.recoverToken}</h2>
+                                
                                 
                                 
                                     <a href="https://johandrog.github.io/Tablero-de-Anuncios/restablecer/contra/${data._id}" style=" width: 22vw;
@@ -242,9 +245,8 @@ sendEmail_forgotpass:function (req,res) {
                                     border-radius: 10px;
                                     font-size: 16px;
                                     margin-bottom: 20px;">Toca para cambiar la Contraseña</a>
-                                
 
-                                <p><strong>Nota:</strong> Si tu no solicitaste este cambio de contraseña puedes ignorar este correo...</p>
+                                <p><strong>IMPORTANTE:</strong> Si tu no solicitaste este cambio de contraseña puedes ignorar este correo, o ponerte en contacto con nosotros para verificar la seguridad de tu cuenta...</p>
                             </body>
                             </html>`
                             
@@ -252,7 +254,7 @@ sendEmail_forgotpass:function (req,res) {
 
                 }).then(data=>{
                     msj = {
-                        emailsend : "✅✉️ Se ha enviado a tu correo un email con una nueva contraseña",
+                        emailsend : "✅✉️ Se ha enviado a tu correo las instrucciones para continuar",
                         emailstat : data
                     }
                     res.status(200).json(msj)
@@ -308,7 +310,8 @@ if(isValid){
             bcrypt.hash(newpassword,10)
             .then(encryptedpass=>{
                 passwordchanger = {
-                password : encryptedpass
+                password : encryptedpass,
+                recoverToken: "used"      //!-----------CHANGE 2.0----------------------------------------------------------
                 }
                 AdminModel.updateadmin(result._id,passwordchanger)
                 .then(data=>{

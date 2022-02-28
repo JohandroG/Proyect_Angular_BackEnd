@@ -45,6 +45,11 @@ const PhoneSchema = new mongoose.Schema({
     updated_at : {
         type : Date,
         required : true
+    },
+
+    user : {
+        type : String,
+        required : true
     }
 
 

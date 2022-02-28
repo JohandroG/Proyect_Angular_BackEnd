@@ -28,7 +28,7 @@ const PhoneController = {
             setTimeout(async function(){
                 await PhoneModel.updatePhone(numberinfo.id, setOff)
                 console.log("Calling - off");
-            }, (60000 * 2)) //todo------------------------------------------------------------Change Later-------------
+            }, (60000 * 20)) //todo------------------------------------------------------------Change Later-------------
 
             res.status(200).json(numberinfo)
         }
@@ -47,8 +47,9 @@ const PhoneController = {
             updatedNum = {
                 publisher : req.body.publisher,
                 info: req.body.info,
-                type: req.body.type,
-                notes: req.body.notes,
+                type: req.body.type || "N/A",
+                notes: req.body.notes || "Sin Nota",
+                user: req.body.user,
                 called : true,
                 updated_at: new Date()
             }

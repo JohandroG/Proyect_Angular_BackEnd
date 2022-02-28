@@ -74,7 +74,6 @@ if(description.length < 8 ){
 
 
     if(isValid){
-        
         //Upload file to S3
         if(file){
             const result = await uploadFile(file)

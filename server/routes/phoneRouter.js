@@ -9,5 +9,6 @@ PhoneRouter.route('/get/resnum/:user').get(PhoneController.requestResNumbers)
 
 PhoneRouter.route('/update/num').put(PhoneValidator.updateNumberVal,PhoneController.updateNumber)
 PhoneRouter.route('/update/calledreg').put(PhoneController.editCalledRegister)
+PhoneRouter.route('/unregister').put(PhoneController.unRegisterNumber)
 
 module.exports = { PhoneRouter };

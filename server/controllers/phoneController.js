@@ -98,6 +98,23 @@ const PhoneController = {
             console.log(err);
         })
 
+    },
+
+    unRegisterNumber: function(req,res){
+        let phoneid = req.body._id;
+
+        updatedInfo = {info: "No Contestó"}
+
+        PhoneModel.updatePhone(phoneid, updatedInfo)
+        .then(data=>{
+            res.status(200).json({
+                info: data,
+                msj: "Se ha quitado la reservación del numero"
+            })
+        })
+        .catch(err=>{
+            res.status(400).end()
+        })
     }
 
 

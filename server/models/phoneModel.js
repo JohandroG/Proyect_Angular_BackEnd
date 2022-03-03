@@ -67,9 +67,14 @@ const PhoneModel = {
     findallPhones: function() {
         return Phone.find();
     },
+
     findUnusedNumber: function(){
         return Phone.findOne({calling: false , called: false})
     },
+    findmMyResevedNum: function(user){
+        return Phone.find({user: user , info: "Está Reservado"})
+    },
+
     createNotice : function(newNotice) {
         return Phone.create(newNotice) 
     },

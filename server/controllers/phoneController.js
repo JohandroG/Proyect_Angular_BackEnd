@@ -16,7 +16,7 @@ const PhoneController = {
         let numberinfo = await PhoneModel.findUnusedNumber()
         
         if(numberinfo == null){
-            res.status(200),json({nomorenums: "Ya se utilzaron todos los numeros pronto habilitaremos de nuevo mas"})
+            res.status(404).json({nonums: "No quedan números disponibles"})
         }
         else{
             //------------------------------
@@ -63,6 +63,42 @@ const PhoneController = {
             })
         }
     },
+
+    requestResNumbers: function(req,res){
+
+        let user = req.params.user
+
+        PhoneModel.findmMyResevedNum(user)
+        .then(data=>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    editCalledRegister: function(req,res){
+
+        let infoReceived = req.body.info
+
+        if(infoReceived === "all"){
+            searchCondition = {}
+        }
+        else{
+            searchCondition = {info: infoReceived}
+        }
+        
+        phoneUpdated = {called: false}
+
+        PhoneModel.updatePhones(searchCondition,phoneUpdated)
+        .then(data=>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+
+    }
 
 
 

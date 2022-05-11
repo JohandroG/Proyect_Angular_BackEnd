@@ -12,7 +12,7 @@ NoticeRouter.route('/notice/image/:key').get(NoticesController.getimages);
 
 //*POST
 NoticeRouter.route('/create').post(NoticesController.createNotice);
-
+//
 
 //*PUT
 NoticeRouter.route('/update/:id').put(NoticesController.updatenotice);

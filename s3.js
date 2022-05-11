@@ -36,7 +36,7 @@ function getFileStream(fileKey){
         Bucket: bucketname
     }
     return s3.getObject(downloadParams).createReadStream() || null;
-    //
+    
 }
 
 function deleteFile(fileKey){

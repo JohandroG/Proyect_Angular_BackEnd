@@ -25,7 +25,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.UseHttpsRedirection();  
 
 //*DATABASE------------------------------------------------------------------------------------------
 require("./server/config/database.js");

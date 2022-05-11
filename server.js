@@ -7,7 +7,6 @@ const {PhoneRouter} = require('./server/routes/phoneRouter');
 const {PushTokenRouter} = require('./server/routes/pushtokenRouter');
 const path = require('path');
 var cors = require('cors');
-const exp = require('constants');
 
 //*APP------------------------------------------------------------------------------------------
 const app = express();
@@ -19,12 +18,14 @@ app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 app.use("/resources", express.static(path.join(__dirname + "/resources")));
 
 
-// app.use((req, res, next) => {
-//     res.setHeader("Access-Control-Allow-Origin", "*");
-//     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, PUT, OPTION");
-//     next();
-// });
+app.UseCors((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, PUT, OPTION");
+    next();
+});
+
+app.UseHttpsRedirection();  
 
 //*DATABASE------------------------------------------------------------------------------------------
 require("./server/config/database.js");

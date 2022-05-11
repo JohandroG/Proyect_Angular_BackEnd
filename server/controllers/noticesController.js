@@ -1,8 +1,10 @@
 const {NoticeModel} = require( './../models/noticeModel' );
+const {PushTokenController} = require( './../controllers/pushTokenController' );
 const fs = require('fs');
 const multer  = require('multer');
 const {uploadFile, getFileStream, deleteFile} = require('../../s3');
-const util = require('util')
+const util = require('util');
+const { body } = require('express-validator');
 const unlinkFile = util.promisify(fs.unlink);
 
 //*------------MULTER IMAGE UPLOAD---------------------------------------------------------------------------
@@ -93,6 +95,24 @@ if(description.length < 8 ){
             }
         NoticeModel.createNotice(newNotice)
         .then(data=>{
+
+            let notificationInfo = {
+                //-----------------------------------------------------------------
+                title: "Nuevo Anuncio",
+                body: data.title,
+                image: `https://tablero-a-api.herokuapp.com/notices/notice/image/${data.picture}`,
+                //-----------------------------------------------------------------
+                action: "redirecttonotice",
+                actionti: "Ver Anuncio",
+                //-----------------------------------------------------------------
+                data1: data._id,
+                data2: ""
+                //-----------------------------------------------------------------
+            }
+
+            PushTokenController.sendBroadcastPush(notificationInfo)
+
+
             res.status(200).json(data);
         })
         .catch(err=>{
@@ -218,6 +238,23 @@ updatenotice: [
             if(isValid){
                 NoticeModel.updatenotice(id,noticeupdated)
                 .then(updatedinfo=>{
+
+                    let notificationInfo = {
+                        //-----------------------------------------------------------------
+                        title: "Anuncio Actualizado",
+                        body: updatedinfo.title,
+                        image: `https://tablero-a-api.herokuapp.com/notices/notice/image/${updatedinfo.picture}`,
+                        //-----------------------------------------------------------------
+                        action: "redirecttonotice",
+                        actionti: "Ver Anuncio",
+                        //-----------------------------------------------------------------
+                        data1: updatedinfo._id,
+                        data2: ""
+                        //-----------------------------------------------------------------
+                    }
+        
+                    PushTokenController.sendBroadcastPush(notificationInfo)
+
                     res.status(200).json(updatedinfo)
                 })
                 .catch(err=>{

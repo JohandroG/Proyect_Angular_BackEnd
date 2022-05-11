@@ -4,6 +4,7 @@ const {AdminRouter} = require('./server/routes/adminRouter');
 const {CodeRouter} = require('./server/routes/codeRouter');
 const {NoticeRouter} = require('./server/routes/noticeRouter');
 const {PhoneRouter} = require('./server/routes/phoneRouter');
+const {PushTokenRouter} = require('./server/routes/pushtokenRouter');
 const path = require('path');
 var cors = require('cors');
 const exp = require('constants');
@@ -33,6 +34,7 @@ app.use( '/admins', AdminRouter );
 app.use( '/codes', CodeRouter );
 app.use( '/notices', NoticeRouter );
 app.use( '/phones', PhoneRouter );
+app.use( '/push-tokens', PushTokenRouter );
 
 
 // app.all('*', function (req,res) {

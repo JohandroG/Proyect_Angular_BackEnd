@@ -5,62 +5,6 @@ const bcrypt = require( 'bcrypt' );
 
 const CodesController = {
 
-
-    // createTCode : function (req,res) {
-    //     let name = "Total Access"
-    //     let code = "12345"
-    //     let identifier = "Total"
-
-    //     CodeModel.findbyIdenfier(identifier)
-    //     .then(data =>{
-    //         if(data === null){
-    //             newCode = {
-    //                 name, code, identifier
-    //             }
-    //             CodeModel.createCode(newCode)
-    //             .then(result => {
-    //                 res.status(200).json(result);
-    //             })
-    //             .catch(err=>{
-    //                 console.log(err);
-    //             })
-    //         }
-    //         else{
-    //             res.status(412).end();
-    //         }
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    // },
-    // createNCode : function (req,res) {
-    //     let name = "Normal Access"
-    //     let code = "123456"
-    //     let identifier = "Normal"
-
-    //     CodeModel.findbyIdenfier(identifier)
-    //     .then(data =>{
-    //         if(data === null){
-    //             newCode = {
-    //                 name, code, identifier
-    //             }
-    //             CodeModel.createCode(newCode)
-    //             .then(result => {
-    //                 res.status(200).json(result);
-    //             })
-    //             .catch(err=>{
-    //                 console.log(err);
-    //             })
-    //         }
-    //         else{
-    //             res.status(412).end();
-    //         }
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    // },
-
     updateTCode: function (req,res) {
         oldcode = req.body.oldcode;
         newcode = req.body.newcode;

@@ -35,7 +35,14 @@ function getFileStream(fileKey){
         Key: fileKey,
         Bucket: bucketname
     }
-    return s3.getObject(downloadParams).createReadStream()
+    s3.getObject(downloadParams).createReadStream()
+    .then(data=>{
+        return data;
+    })
+    .catch(err=>{
+        console.log(err);
+        return null;
+    })
 }
 
 function deleteFile(fileKey){

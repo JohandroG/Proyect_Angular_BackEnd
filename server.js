@@ -18,7 +18,7 @@ app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 app.use("/resources", express.static(path.join(__dirname + "/resources")));
 
 
-app.UseCors((req, res, next) => {
+app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, PUT, OPTION");

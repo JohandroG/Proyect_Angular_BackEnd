@@ -76,8 +76,16 @@ if(description.length < 8 ){
 
 
     if(isValid){
+
+        console.log(file);
         //Upload file to S3
         if(file){
+            console.log("si");
+            console.log("si");
+            console.log("si");
+            console.log("si");
+            console.log("si");
+            console.log("si");
             const result = await uploadFile(file)
             picture = result.key
             await unlinkFile(file.path) //remove this for not heroku

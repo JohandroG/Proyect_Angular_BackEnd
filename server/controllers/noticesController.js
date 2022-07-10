@@ -80,15 +80,16 @@ if(description.length < 8 ){
         console.log(file);
         //Upload file to S3
         if(file){
-            console.log("si");
-            console.log("si");
-            console.log("si");
-            console.log("si");
-            console.log("si");
-            console.log("si");
-            const result = await uploadFile(file)
-            picture = result.key
-            await unlinkFile(file.path) //remove this for not heroku
+            try{
+                const result = await uploadFile(file)
+                await unlinkFile(file.path) //remove this for not heroku
+            }
+            catch(e){
+                console.log(e);
+            }
+            finally{
+                picture = result.key
+            }
         }
         //--------------------------------------------------------
             newNotice = {

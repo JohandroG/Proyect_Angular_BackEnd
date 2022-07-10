@@ -83,12 +83,10 @@ if(description.length < 8 ){
             try{
                 const result = await uploadFile(file)
                 await unlinkFile(file.path) //remove this for not heroku
+                picture = result.key
             }
             catch(e){
                 console.log(e);
-            }
-            finally{
-                picture = result.key
             }
         }
         //--------------------------------------------------------
@@ -195,12 +193,10 @@ updatenotice: [
             try{
                 const result = await uploadFile(file)
                 await unlinkFile(file.path) //remove this for not heroku
+                picture = result.key
             }
             catch(e){
                 console.log(e);
-            }
-            finally{
-                picture = result.key
             }
         }
         //--------------------------------------------------------

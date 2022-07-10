@@ -192,9 +192,16 @@ updatenotice: [
 
         //Upload file to S3
         if(file){
-            const result = await uploadFile(file)
-            picture = result.key
-            await unlinkFile(file.path) //remove this for not heroku
+            try{
+                const result = await uploadFile(file)
+                await unlinkFile(file.path) //remove this for not heroku
+            }
+            catch(e){
+                console.log(e);
+            }
+            finally{
+                picture = result.key
+            }
         }
         //--------------------------------------------------------
 
